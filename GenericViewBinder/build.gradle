@@ -47,7 +47,7 @@ afterEvaluate {
 
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.Miladhsp'
-                artifactId = 'generic=view=binder'
+                artifactId = 'generic-view-binder'
                 version = '1.0'
             }
         }
