@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdk 16
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -18,7 +18,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -57,8 +57,8 @@ afterEvaluate {
 
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.Miladhsp'
-                artifactId = 'generic-view-binder'
-                version = '1.0'
+                artifactId = 'GenericViewBinder'
+                version = '1.6'
             }
         }
     }
