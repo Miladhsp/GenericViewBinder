@@ -4,6 +4,7 @@ import com.example.viewbindingexample.databinding.ActivityMainBinding;
 
 import ir.mich.genericviewbinder.SupperActivity;
 
+
 public class MainActivity extends SupperActivity<ActivityMainBinding> {
 
     @Override
