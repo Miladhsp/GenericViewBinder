@@ -17,11 +17,21 @@ import androidx.viewbinding.ViewBinding;
 
 public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
     public Bundle args;
-    protected Context context;
-    protected Context context_static = SupperActivity.context_static;
-    protected VB binding;
-    //private boolean isStartFragmentForResult;
+    /**
+     * Do this:
+     * <p>
+     * In the Android Manifest file, declare the following.
+     * <p>
+     * <application
+     * ...
+     * android:name="ir.mich.genericviewbinder.App"
+     * >
+     * </application>
+     */
+    protected Context context_static = App.getContext();
     protected Transfer transfer;
+    protected Context context;
+    protected VB binding;
     private int requestCode;
     private int resultCode;
     private Bundle result;

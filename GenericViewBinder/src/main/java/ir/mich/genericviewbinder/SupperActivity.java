@@ -10,8 +10,18 @@ import androidx.viewbinding.ViewBinding;
 
 
 public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatActivity {
-    @SuppressLint("StaticFieldLeak")
-    public static Context context_static;
+    /**Do this:
+     *
+     * In the Android Manifest file, declare the following.
+     *
+     * <application
+     * ...
+     * android:name="ir.mich.genericviewbinder.App"
+     * >
+     * </application>
+     *
+     */
+    protected Context context_static = App.getContext();
     protected Transfer transfer;
     protected Context context;
     protected Bundle args;
@@ -22,9 +32,6 @@ public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatAc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getIntent().cloneFilter().getAction() != null) {
-            context_static = this;
-        }
         binding = new GenericBinder<VB>(this, 0).inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         context = this;
@@ -48,11 +55,5 @@ public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatAc
     private void toast(int duration, CharSequence text) {
         Toast.makeText(context, text, (duration == 0) ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG).show();
     }
-
-    public static class SetupContext {
-        @SuppressLint("StaticFieldLeak")
-        protected static final Context context = SupperActivity.context_static;
-    }
-
 
 }

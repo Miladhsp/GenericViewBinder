@@ -18,11 +18,11 @@ public abstract class SupperRecyclerViewAdapter<Model, VB extends ViewBinding>
         extends RecyclerView.Adapter<SupperRecyclerViewAdapter.Holder<Model>>
         implements Filterable {
 
-    protected Context context_static = SupperActivity.context_static;
     private final ArrayList<Model> models;
-    private ArrayList<Model> filteredModels;
+    protected Context context_static = App.getContext();
     protected Context context;
     protected VB binding;
+    private ArrayList<Model> filteredModels;
 
     public SupperRecyclerViewAdapter(ArrayList<Model> models) {
         this.models = models;
@@ -53,15 +53,6 @@ public abstract class SupperRecyclerViewAdapter<Model, VB extends ViewBinding>
     public void onBindViewHolder(@NonNull Holder<Model> holder, int position) {
         holder.bind(models.get(position));
     }
-
-    public static abstract class Holder<Model> extends RecyclerView.ViewHolder {
-        public Holder(@NonNull View itemView) {
-            super(itemView);
-        }
-
-        public abstract void bind(Model item);
-    }
-
 
     @Override
     public Filter getFilter() {
@@ -106,6 +97,14 @@ public abstract class SupperRecyclerViewAdapter<Model, VB extends ViewBinding>
 
     protected interface Result<Model> {
         String filterBy(Model model);
+    }
+
+    public static abstract class Holder<Model> extends RecyclerView.ViewHolder {
+        public Holder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        public abstract void bind(Model item);
     }
 
 /*    protected List<Model> getFilteredResults(String constraint) {
