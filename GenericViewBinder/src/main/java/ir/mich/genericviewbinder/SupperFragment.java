@@ -3,6 +3,7 @@ package ir.mich.genericviewbinder;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,7 +29,8 @@ public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
      * >
      * </application>
      */
-    protected Context context_static = App.getContext();
+    @SuppressLint("StaticFieldLeak")
+    public static Context context_static = App.getContext();
     protected Transfer transfer;
     protected Context context;
     protected VB binding;

@@ -1,5 +1,6 @@
 package ir.mich.genericviewbinder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,20 @@ public abstract class SupperRecyclerViewAdapter<Model, VB extends ViewBinding>
         extends RecyclerView.Adapter<SupperRecyclerViewAdapter.Holder<Model>>
         implements Filterable {
 
+    /**
+     * Do this:
+     * <p>
+     * In the Android Manifest file, declare the following.
+     * <p>
+     * <application
+     * ...
+     * android:name="ir.mich.genericviewbinder.App"
+     * >
+     * </application>
+     */
+    @SuppressLint("StaticFieldLeak")
+    public static Context context_static = App.getContext();
     private final ArrayList<Model> models;
-    protected Context context_static = App.getContext();
     protected Context context;
     protected VB binding;
     private ArrayList<Model> filteredModels;

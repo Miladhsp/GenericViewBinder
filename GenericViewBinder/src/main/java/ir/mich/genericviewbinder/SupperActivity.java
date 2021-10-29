@@ -21,7 +21,8 @@ public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatAc
      * </application>
      *
      */
-    protected Context context_static = App.getContext();
+    @SuppressLint("StaticFieldLeak")
+    public static Context context_static = App.getContext();
     protected Transfer transfer;
     protected Context context;
     protected Bundle args;
