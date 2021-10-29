@@ -30,7 +30,11 @@ public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatAc
         context = this;
         transfer = new Transfer(this);
         args = transfer.getExtras();
+        init();
         onCreate();
+    }
+
+    protected void init() {
     }
 
     protected void toast(CharSequence text) {

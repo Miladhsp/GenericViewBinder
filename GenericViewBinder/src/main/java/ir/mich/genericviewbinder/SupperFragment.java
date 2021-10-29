@@ -16,15 +16,15 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
+    public Bundle args;
     protected Context context;
     protected Context context_static = SupperActivity.context_static;
     protected VB binding;
+    //private boolean isStartFragmentForResult;
+    protected Transfer transfer;
     private int requestCode;
     private int resultCode;
     private Bundle result;
-    public Bundle args;
-    //private boolean isStartFragmentForResult;
-    protected Transfer transfer;
 
     @Nullable
     @Override
@@ -33,8 +33,12 @@ public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
         context = binding.getRoot().getContext();
         transfer = new Transfer(this);
         args = transfer.getExtras();
+        init();
         onCreateView();
         return binding.getRoot();
+    }
+
+    protected void init() {
     }
 
     protected abstract void onCreateView();
