@@ -33,11 +33,11 @@ public class App extends Application {
         return getApplication().getApplicationContext();
     }
 
-    protected static void toast(CharSequence text) {
+    public static void toast(CharSequence text) {
         App.toast(0, text);
     }
 
-    protected static void toast_long(CharSequence text) {
+    public static void toast_long(CharSequence text) {
         App.toast(1, text);
     }
 
