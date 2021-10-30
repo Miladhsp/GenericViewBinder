@@ -9,6 +9,8 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * Do this:
  * <p>
@@ -23,12 +25,18 @@ import android.widget.Toast;
 public class App extends Application {
 
     @SuppressLint("StaticFieldLeak")
-    protected static Activity activity_static ;
+    protected static Activity activity_static;
+    @SuppressLint("StaticFieldLeak")
+    protected static AppCompatActivity appCompatActivity_static;
 
     private static Application application;
 
     public static Application getApplication() {
         return application;
+    }
+
+    public static <Main> Main getAppCompatActivity() {
+        return (Main) App.appCompatActivity_static;
     }
 
     public static Activity getActivity() {
