@@ -30,6 +30,7 @@ public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
     @SuppressLint("StaticFieldLeak")
     public static Context context_static = App.getContext();
     public Bundle args;
+    public View view;
     public Activity activity;
     protected Transfer transfer;
     protected Context context;
@@ -50,13 +51,14 @@ public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = new GenericBinder<VB>(this, 0).inflate(inflater, container);
+        view = binding.getRoot();
         context = binding.getRoot().getContext();
         activity = (Activity) context;
         transfer = new Transfer(this);
         args = transfer.getExtras();
         init();
         onCreateView();
-        return binding.getRoot();
+        return view;
     }
 
     protected void init() {
