@@ -3,23 +3,22 @@ package ir.mich.genericviewbinder;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
 
 public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatActivity {
-    /**Do this:
-     *
+    /**
+     * Do this:
+     * <p>
      * In the Android Manifest file, declare the following.
-     *
+     * <p>
      * <application
      * ...
      * android:name="ir.mich.genericviewbinder.App"
      * >
      * </application>
-     *
      */
     @SuppressLint("StaticFieldLeak")
     public static Context context_static = App.getContext();
@@ -27,6 +26,14 @@ public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatAc
     protected Context context;
     protected Bundle args;
     protected VB binding;
+
+    protected static void toast(CharSequence text) {
+        App.toast(0, text);
+    }
+
+    protected static void toast_long(CharSequence text) {
+        App.toast(1, text);
+    }
 
     protected abstract void onCreate();
 
@@ -44,17 +51,4 @@ public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatAc
 
     protected void init() {
     }
-
-    protected void toast(CharSequence text) {
-        toast(0, text);
-    }
-
-    protected void toast_long(CharSequence text) {
-        toast(1, text);
-    }
-
-    private void toast(int duration, CharSequence text) {
-        Toast.makeText(context, text, (duration == 0) ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG).show();
-    }
-
 }

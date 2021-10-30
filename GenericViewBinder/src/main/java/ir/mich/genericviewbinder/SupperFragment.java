@@ -1,15 +1,11 @@
 package ir.mich.genericviewbinder;
 
-import static android.widget.Toast.LENGTH_LONG;
-import static android.widget.Toast.LENGTH_SHORT;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
-    public Bundle args;
     /**
      * Do this:
      * <p>
@@ -31,12 +26,21 @@ public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
      */
     @SuppressLint("StaticFieldLeak")
     public static Context context_static = App.getContext();
+    public Bundle args;
     protected Transfer transfer;
     protected Context context;
     protected VB binding;
     private int requestCode;
     private int resultCode;
     private Bundle result;
+
+    protected static void toast(CharSequence text) {
+        App.toast(0, text);
+    }
+
+    protected static void toast_long(CharSequence text) {
+        App.toast(1, text);
+    }
 
     @Nullable
     @Override
@@ -70,15 +74,5 @@ public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
     protected void onFragmentResult(int requestCode, int resultCode, Bundle data) {
     }
 
-    protected void toast(CharSequence text) {
-        toast(0, text);
-    }
 
-    protected void toast_long(CharSequence text) {
-        toast(1, text);
-    }
-
-    private void toast(int duration, CharSequence text) {
-        Toast.makeText(context, text, (duration == 0) ? LENGTH_SHORT : LENGTH_LONG).show();
-    }
 }
