@@ -4,6 +4,7 @@ import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
@@ -22,13 +23,20 @@ import android.widget.Toast;
 public class App extends Application {
 
     @SuppressLint("StaticFieldLeak")
+    public static Activity activity_static;
+
+    @SuppressLint("StaticFieldLeak")
     public static Context context_static;
+
     private static Application application;
 
     public static Application getApplication() {
         return application;
     }
 
+    public static Activity getActivity() {
+        return (Activity) getApplication().getApplicationContext();
+    }
     public static Context getContext() {
         return getApplication().getApplicationContext();
     }
@@ -49,6 +57,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
+        activity_static = getActivity();
         context_static = getContext();
+
     }
 }

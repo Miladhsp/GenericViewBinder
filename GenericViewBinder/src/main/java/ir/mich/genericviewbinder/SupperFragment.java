@@ -1,6 +1,7 @@
 package ir.mich.genericviewbinder;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,8 +26,11 @@ public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
      * </application>
      */
     @SuppressLint("StaticFieldLeak")
+    public static Activity activity_static = App.getActivity();
+    @SuppressLint("StaticFieldLeak")
     public static Context context_static = App.getContext();
     public Bundle args;
+    public Activity activity;
     protected Transfer transfer;
     protected Context context;
     protected VB binding;
@@ -47,6 +51,7 @@ public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = new GenericBinder<VB>(this, 0).inflate(inflater, container);
         context = binding.getRoot().getContext();
+        activity = (Activity) context;
         transfer = new Transfer(this);
         args = transfer.getExtras();
         init();

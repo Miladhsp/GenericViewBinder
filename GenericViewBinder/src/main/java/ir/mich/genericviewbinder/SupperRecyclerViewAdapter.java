@@ -1,6 +1,7 @@
 package ir.mich.genericviewbinder;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,8 +32,11 @@ public abstract class SupperRecyclerViewAdapter<Model, VB extends ViewBinding>
      * </application>
      */
     @SuppressLint("StaticFieldLeak")
+    public static Activity activity_static = App.getActivity();
+    @SuppressLint("StaticFieldLeak")
     public static Context context_static = App.getContext();
     private final ArrayList<Model> models;
+    public Activity activity;
     protected Context context;
     protected VB binding;
     private ArrayList<Model> filteredModels;
@@ -46,6 +50,7 @@ public abstract class SupperRecyclerViewAdapter<Model, VB extends ViewBinding>
     @Override
     public Holder<Model> onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
+        activity = (Activity) context;
         binding = new GenericBinder<VB>(this, 1).inflate(LayoutInflater.from(context), viewGroup);
         return new Holder<Model>(binding.getRoot()) {
             @Override
