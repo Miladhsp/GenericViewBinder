@@ -23,10 +23,7 @@ import android.widget.Toast;
 public class App extends Application {
 
     @SuppressLint("StaticFieldLeak")
-    public static Activity activity_static;
-
-    @SuppressLint("StaticFieldLeak")
-    public static Context context_static;
+    protected static Activity activity_static ;
 
     private static Application application;
 
@@ -35,8 +32,9 @@ public class App extends Application {
     }
 
     public static Activity getActivity() {
-        return (Activity) getApplication().getApplicationContext();
+        return activity_static;
     }
+
     public static Context getContext() {
         return getApplication().getApplicationContext();
     }
@@ -49,7 +47,7 @@ public class App extends Application {
         App.toast(1, text);
     }
 
-    public static void toast(int duration, CharSequence text) {
+    protected static void toast(int duration, CharSequence text) {
         Toast.makeText(getContext(), text, (duration == 0) ? LENGTH_SHORT : LENGTH_LONG).show();
     }
 
@@ -57,8 +55,5 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-        activity_static = getActivity();
-        context_static = getContext();
-
     }
 }
