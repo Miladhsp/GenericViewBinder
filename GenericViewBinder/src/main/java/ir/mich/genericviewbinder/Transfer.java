@@ -36,7 +36,7 @@ public class Transfer {
         context.startActivity(intent);
     }
 
-    public void startFragment(ViewGroup layout, SupperFragment<?> fragment, @Nullable String tag, @Nullable String addToBackStack, @Nullable Bundle bundle) {
+    public void startFragment(ViewGroup layout, FragmentBinder<?> fragment, @Nullable String tag, @Nullable String addToBackStack, @Nullable Bundle bundle) {
         fragment.setArguments((bundle == null) ? new Bundle() : bundle);
         activity.getSupportFragmentManager()
                 .beginTransaction()
@@ -45,7 +45,7 @@ public class Transfer {
                 .commit();
     }
 
-    public void startFrgmentForResult(int requestCode, int resultCode, ViewGroup layout, SupperFragment<?> fragment, String tag, String addToBackStack, @NonNull Bundle bundle) {
+    public void startFrgmentForResult(int requestCode, int resultCode, ViewGroup layout, FragmentBinder<?> fragment, String tag, String addToBackStack, @NonNull Bundle bundle) {
         startFragment(layout, fragment, tag, addToBackStack, null);
         fragment.setupResult(requestCode, resultCode, bundle);
     }

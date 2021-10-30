@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
 
-public abstract class SupperActivity<VB extends ViewBinding> extends AppCompatActivity {
+public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatActivity {
     /**
      * Do this:
      * <p>

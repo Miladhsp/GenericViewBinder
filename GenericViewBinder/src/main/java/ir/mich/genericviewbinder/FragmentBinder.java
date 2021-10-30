@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
-public abstract class SupperFragment<VB extends ViewBinding> extends Fragment {
+public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     /**
      * Do this:
      * <p>

@@ -16,8 +16,8 @@ import androidx.viewbinding.ViewBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class SupperRecyclerViewAdapter<Model, VB extends ViewBinding>
-        extends RecyclerView.Adapter<SupperRecyclerViewAdapter.Holder<Model>>
+public abstract class RecyclerViewAdapterBinder<Model, VB extends ViewBinding>
+        extends RecyclerView.Adapter<RecyclerViewAdapterBinder.Holder<Model>>
         implements Filterable {
 
     /**
@@ -41,7 +41,7 @@ public abstract class SupperRecyclerViewAdapter<Model, VB extends ViewBinding>
     protected VB binding;
     private ArrayList<Model> filteredModels;
 
-    public SupperRecyclerViewAdapter(ArrayList<Model> models) {
+    public RecyclerViewAdapterBinder(ArrayList<Model> models) {
         this.models = models;
         this.filteredModels = models;
     }
