@@ -21,10 +21,8 @@ public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatAc
      * >
      * </application>
      */
-    @SuppressLint("StaticFieldLeak")
-    public static Activity activity_static = App.getActivity();
-    @SuppressLint("StaticFieldLeak")
-    public static Context context_static = App.getContext();
+    public Activity activity_app = App.getActivity();
+    public Context context_app = App.getContext();
     public Activity activity;
     protected Transfer transfer;
     protected Context context;
