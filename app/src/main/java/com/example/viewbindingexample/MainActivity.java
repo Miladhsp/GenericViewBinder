@@ -27,7 +27,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate() {
-//        android:id="@+id/hello_world"
+//        android:id="@+id/text"
         binding.text.setText("MainActivity");
         binding.btnTransfer.setOnClickListener(this);
     }
