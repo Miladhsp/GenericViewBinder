@@ -9,13 +9,13 @@ Android library for working with View-Binding
 #### build.gradle(:app|Module)
 ```gradle
 android {
-    buildFeatures {
-        viewBinding true
-    }
+    buildFeatures {		
+        viewBinding true	<--add
+    }				
 }
 
 dependencies {
-	implementation 'com.github.Miladhsp:GenericViewBinder:Tag'
+	implementation 'com.github.Miladhsp:GenericViewBinder:Tag'	<--add
 }
 ```
 
@@ -24,7 +24,7 @@ dependencies {
 allprojects {
 	repositories {
 		...
-		maven { url 'https://jitpack.io' }
+		maven { url 'https://jitpack.io' }	<--add
 	}
 }
 ```
@@ -41,7 +41,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+	
+        maven { url 'https://jitpack.io' }	<--add
+	
     }
 }
 rootProject.name = "My Application"
@@ -66,7 +68,7 @@ In the Android Manifest file, declare the following.
     package="com.example.example" >
 
     <application
-        android:name="ir.mich.genericviewbinder.App"
+        android:name="ir.mich.genericviewbinder.App"		<--add
         
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
