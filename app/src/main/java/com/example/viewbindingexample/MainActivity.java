@@ -14,11 +14,6 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> {
     @Override
     protected void onCreate() {
         binding.hello.setText("Yes");
-        App.<MainActivity>getAppCompatActivity().toast();
-    }
-
-    public void toast() {
-        App.toast("Yes");
     }
 
 }
