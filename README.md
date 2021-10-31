@@ -106,7 +106,6 @@ import ir.mich.genericviewbinder.App;
 
 public class MainActivity extends ActivityBinder<ActivityMainBinding> {
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate() {
         binding.txt.setText("hello");
