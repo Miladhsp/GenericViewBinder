@@ -52,7 +52,6 @@ public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatAc
         args = transfer.getExtras();
         if (getIntent().cloneFilter().getAction() != null) {
             App.activity_static = this;
-            App.appCompatActivity_static = this;
         }
         init();
         onCreate();
