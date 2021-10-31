@@ -6,11 +6,47 @@ Android library for working with View-Binding
 
 # Configuration
 
-#### build.gradle(:app)
+#### build.gradle(:app|Module)
 ```gradle
+android {
+    buildFeatures {
+        viewBinding true
+    }
+}
+
 dependencies {
 	implementation 'com.github.Miladhsp:GenericViewBinder:Tag'
 }
+```
+
+#### build.gradle(:Project)
+```gradle
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+#### settings.gradle 
+```diff
+if you dont have 'all project in build.gradle(:Project)' 
+add this to settings.gradle 
+
++ maven { url 'https://jitpack.io' }
+```
+```gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+rootProject.name = "My Application"
+include ':app'
+
 ```
 
 #### AndroidManifest.xml
