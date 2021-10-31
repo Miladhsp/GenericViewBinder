@@ -31,8 +31,10 @@ public abstract class RecyclerViewAdapterBinder<Model, VB extends ViewBinding>
      * >
      * </application>
      */
-    public Activity activity_app = App.getActivity();
-    public Context context_app = App.getContext();
+    @SuppressLint("StaticFieldLeak")
+    public static Activity activity_main = App.getActivity();
+    @SuppressLint("StaticFieldLeak")
+    public static Context context_app = App.getContext();
     private final ArrayList<Model> models;
     public Activity activity;
     protected Context context;

@@ -25,8 +25,10 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
      * >
      * </application>
      */
-    public Activity activity_app = App.getActivity();
-    public Context context_app = App.getContext();
+    @SuppressLint("StaticFieldLeak")
+    public static final Activity activity_main = App.getActivity();
+    @SuppressLint("StaticFieldLeak")
+    public static final Context context_app = App.getContext();
     public Bundle args;
     public View view;
     public Activity activity;

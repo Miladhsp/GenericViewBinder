@@ -50,7 +50,7 @@ public class Transfer {
         fragment.setupResult(requestCode, resultCode, bundle);
     }
 
-    protected Bundle getExtras() {
+    public Bundle getExtras() {
         if (fragment == null) {
             return activity.getIntent().getExtras();
         } else {
