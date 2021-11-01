@@ -35,9 +35,6 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     protected Transfer transfer;
     protected Context context;
     protected VB binding;
-    private int requestCode;
-    private int resultCode;
-    private Bundle result;
 
     protected static void toast(CharSequence text) {
         App.toast(0, text);
@@ -65,21 +62,4 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     }
 
     protected abstract void onCreateView();
-
-    public void setupResult(int requestCode, int resultCode, Bundle data) {
-        this.requestCode = requestCode;
-        this.resultCode = resultCode;
-        this.result = data;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        onFragmentResult(requestCode, resultCode, result);
-    }
-
-    protected void onFragmentResult(int requestCode, int resultCode, Bundle data) {
-    }
-
-
 }

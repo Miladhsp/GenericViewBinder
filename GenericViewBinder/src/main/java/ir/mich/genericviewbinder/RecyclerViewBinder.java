@@ -122,7 +122,7 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
         return results;
     }
 
-    public List<Model> getModels() {
+    public List<Model> getList() {
         return models;
     }
 

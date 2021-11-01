@@ -52,7 +52,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     public void onBackPressed() {
         super.onBackPressed();
         binding.count.setText("" + --i);
-        if(i==0)
-        binding.text.setText("MainActivity");
+        if (i == 0)
+            binding.text.setText("MainActivity");
     }
 }
