@@ -127,7 +127,7 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setModels(List<Model> models) {
+    public void setList(List<Model> models) {
         recyclerView.setAdapter(this);
         this.models = models;
         notifyDataSetChanged();
