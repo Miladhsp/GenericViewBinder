@@ -1,6 +1,6 @@
 # GenericViewBinder
 
-[![](https://jitpack.io/v/Miladhsp/GenericViewBinder.svg)](https://jitpack.io/#Miladhsp/GenericViewBinder) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Miladhsp/GenericViewBinder/blob/master/LICENSE) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/miladhsp/genericviewbinder) ![GitHub repo size](https://img.shields.io/github/repo-size/Miladhsp/GenericViewBinder) ![GitHub last commit](https://img.shields.io/github/last-commit/miladhsp/genericViewBinder) [![](https://img.shields.io/badge/Android%20Studio-3DDC84.svg?-style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/studio)
+[![](https://jitpack.io/v/Miladhsp/GenericViewBinder.svg)](https://jitpack.io/#Miladhsp/GenericViewBinder) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Miladhsp/GenericViewBinder/blob/master/LICENSE) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/miladhsp/genericviewbinder) ![GitHub repo size](https://img.shields.io/github/repo-size/Miladhsp/GenericViewBinder) ![GitHub last commit](https://img.shields.io/github/last-commit/miladhsp/genericViewBinder) [![](https://img.shields.io/badge/%20Android-3DDC84.svg?-style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/studio)
 
 
 
