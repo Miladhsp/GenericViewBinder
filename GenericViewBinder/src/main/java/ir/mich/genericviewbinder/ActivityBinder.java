@@ -24,7 +24,7 @@ public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatAc
     @SuppressLint("StaticFieldLeak")
     public static final Activity activity_main = App.getActivity();
     @SuppressLint("StaticFieldLeak")
-    public static final Context context_app = App.getContext();
+    public static final Context context_main = App.getContext();
     public Activity activity;
     protected Transfer transfer;
     protected Context context;
@@ -51,7 +51,7 @@ public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatAc
         transfer = new Transfer(this);
         args = transfer.getExtras();
         if (getIntent().cloneFilter().getAction() != null) {
-            App.activity_static = this;
+            App.main_activity_static = this;
         }
         init();
         onCreate();

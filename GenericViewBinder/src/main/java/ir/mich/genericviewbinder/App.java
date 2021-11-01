@@ -23,7 +23,7 @@ import android.widget.Toast;
 public class App extends Application {
 
     @SuppressLint("StaticFieldLeak")
-    protected static Activity activity_static;
+    protected static Activity main_activity_static;
 
     private static Application application;
 
@@ -32,10 +32,14 @@ public class App extends Application {
     }
 
     public static Activity getActivity() {
-        return activity_static;
+        return main_activity_static;
     }
 
     public static Context getContext() {
+        return main_activity_static;
+    }
+
+    public static Context getAppContext(){
         return getApplication().getApplicationContext();
     }
 
