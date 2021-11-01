@@ -7,7 +7,7 @@
 
 ![Made with](https://img.shields.io/badge/Made%20with%20%F0%9F%92%9C%20in-IRAN-blueviolet)
 
-[![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)]((https://saythanks.io/to/Miladhsp))
+[![say thanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/Miladhsp)
 
 
 Android library for working with View-Binding
