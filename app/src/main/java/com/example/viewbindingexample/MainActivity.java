@@ -2,7 +2,6 @@ package com.example.viewbindingexample;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 
 import com.example.viewbindingexample.databinding.ActivityMainBinding;
@@ -37,14 +36,14 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
         if (v.getId() == binding.btnTransfer.getId()) {
             binding.text.setText("MainFragment");
             binding.count.setText("" + ++i);
-            Bundle bundle = new Bundle();
-            bundle.putInt("color", randomColor());
             transfer.startFragment(
                     binding.redFrame,
                     new MainFragment(),
                     null,
-                    null,
-                    bundle);
+                    null, bundle -> {
+                        bundle.putInt("color", randomColor());
+                        return bundle;
+                    });
         }
     }
 

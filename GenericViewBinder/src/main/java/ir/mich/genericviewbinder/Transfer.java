@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentResultListener;
 
 public class Transfer {
 
-    public static final int RESULT_FIRST_USER = 1;
     protected final String SET_FRAGMENT_RESULT_LISTENER = "SET_FRAGMENT_RESULT_LISTENER";
     private final FragmentActivity activity;
     private final Context context;
@@ -34,18 +33,16 @@ public class Transfer {
         activityLauncher = ActivityResultBinder.registerActivityForResult(fragment);
     }
 
-    public void startActivity(Class<?> clazz, @Nullable Bundle bundle) {
+    public void startActivity(Class<?> clazz, @Nullable Data data) {
         Intent intent = new Intent(context, clazz);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
+        intent.putExtras(validData(data));
         context.startActivity(intent);
     }
 
     public void startFragment(
             ViewGroup layout, FragmentBinder<?> fragment,
-            @Nullable String tag, @Nullable String addToBackStack, @Nullable Bundle bundle) {
-        fragment.setArguments((bundle == null) ? new Bundle() : bundle);
+            @Nullable String tag, @Nullable String addToBackStack, Data data) {
+        fragment.setArguments(validData(data));
         activity.getSupportFragmentManager()
                 .beginTransaction()
                 .replace(layout.getId(), fragment, tag)
@@ -56,7 +53,7 @@ public class Transfer {
     public void startFragmentForResult(
             String requestKey, FragmentResultListener listener, OpenFragment fragment) {
         startFragment(fragment.layout, fragment.fragment, fragment.tag,
-                fragment.addToBackStack, fragment.bundle);
+                fragment.addToBackStack, fragment.data);
         if (this.fragment == null) {
             (fragment.fragment).resultManager = new Protected(SET_FRAGMENT_RESULT_LISTENER, () -> {
                 activity.getSupportFragmentManager()
@@ -69,9 +66,9 @@ public class Transfer {
         }
     }
 
-    public void finishFragmentForResult(String requestKey, Bundle result) {
+    public void finishFragmentForResult(String requestKey, Data data) {
         fragment.requireActivity().getSupportFragmentManager()
-                .setFragmentResult(requestKey, result);
+                .setFragmentResult(requestKey, validData(data));
         //fragment.requireActivity().getFragmentManager().popBackStack();
         App.getActivity().onBackPressed();
     }
@@ -85,18 +82,27 @@ public class Transfer {
     }
 
     public void startActivityForResult(
-            Class<?> cls, @Nullable Bundle bundle,
+            Class<?> cls, @Nullable Data data,
             @Nullable ActivityResultBinder.OnActivityResult<ActivityResult> onActivityResult) {
         Intent intent = new Intent(context, cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
+        intent.putExtras(validData(data));
         activityLauncher.launch(intent, onActivityResult);
     }
 
     public void finishActivityForResult(ir.mich.genericviewbinder.Transfer.ResultActivity result) {
         result.finish(activity::setResult);
         activity.finish();
+    }
+
+    private Bundle validData(Data data) {
+        Bundle bundle = new Bundle();
+        if (data != null) {
+            Bundle temp = data.set(bundle);
+            if (temp != null) {
+                return temp;
+            }
+        }
+        return bundle;
     }
 
     /**
@@ -111,5 +117,9 @@ public class Transfer {
 
     public interface Reply {
         void setResult(int resultCode, Intent data);
+    }
+
+    public interface Data {
+        Bundle set(Bundle bundle);
     }
 }
