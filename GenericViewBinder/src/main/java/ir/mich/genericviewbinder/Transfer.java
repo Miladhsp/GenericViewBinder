@@ -53,7 +53,7 @@ public class Transfer {
                 .commit();
     }
 
-    public void openSomeFragmentForResult(
+    public void startFragmentForResult(
             String requestKey, FragmentResultListener listener, OpenFragment fragment) {
         startFragment(fragment.layout, fragment.fragment, fragment.tag,
                 fragment.addToBackStack, fragment.bundle);
@@ -69,7 +69,7 @@ public class Transfer {
         }
     }
 
-    public void closeSomeFragmentForResult(String requestKey, Bundle result) {
+    public void finishFragmentForResult(String requestKey, Bundle result) {
         fragment.requireActivity().getSupportFragmentManager()
                 .setFragmentResult(requestKey, result);
         //fragment.requireActivity().getFragmentManager().popBackStack();
@@ -84,7 +84,7 @@ public class Transfer {
         }
     }
 
-    public void openSomeActivityForResult(
+    public void startActivityForResult(
             Class<?> cls, @Nullable Bundle bundle,
             @Nullable ActivityResultBinder.OnActivityResult<ActivityResult> onActivityResult) {
         Intent intent = new Intent(context, cls);
@@ -94,7 +94,7 @@ public class Transfer {
         activityLauncher.launch(intent, onActivityResult);
     }
 
-    public void closeSomeActivityForResult(ir.mich.genericviewbinder.Transfer.ResultActivity result) {
+    public void finishActivityForResult(ir.mich.genericviewbinder.Transfer.ResultActivity result) {
         result.finish(activity::setResult);
         activity.finish();
     }

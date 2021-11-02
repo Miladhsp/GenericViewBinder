@@ -24,7 +24,7 @@ public class MainFragment extends FragmentBinder<FragmentMainBinding> implements
 
     @Override
     public void onClick(View v) {
-        transfer.openSomeActivityForResult(
+        transfer.startActivityForResult(
                 MainActivity.class, null, result -> {
                     binding.exampleText.setText("im Back from activity");
                 });
