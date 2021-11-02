@@ -2,11 +2,8 @@
 
 [![](https://jitpack.io/v/Miladhsp/GenericViewBinder.svg)](https://jitpack.io/#Miladhsp/GenericViewBinder) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Miladhsp/GenericViewBinder/blob/master/LICENSE)  [![MinSDK](https://img.shields.io/badge/minSdk-16-blueviolet)](https://developer.android.com/about/versions/android-4.1) ![GitHub last commit](https://img.shields.io/github/last-commit/miladhsp/genericViewBinder) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/miladhsp/genericviewbinder) ![GitHub repo size](https://img.shields.io/github/repo-size/Miladhsp/GenericViewBinder) 
 [![y](https://badgen.net/github/commits/miladhsp/GenericViewBinder)](https://github.com/Miladhsp/GenericViewBinder/commits/master) 
-
 [![Made with](https://img.shields.io/badge/Made%20with%20%F0%9F%92%9C%20in-IRAN-blueviolet)](https://en.wikipedia.org/wiki/Iran)  [![milad](https://img.shields.io/badge/Milad%20Hasanpour-brightgreen)](https://github.com/Miladhsp)
-
 [![Android](https://img.shields.io/badge/%20Android-3DDC84.svg?logo=android&logoColor=white)](https://developer.android.com/studio) [![Java](https://img.shields.io/badge/java-%23ED8B00.svg?logo=java&logoColor=white)](https://www.java.com/en/) [![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?logo=Gradle&logoColor=white)](https://gradle.org/)
-
 [![say thanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/Miladhsp)
 
 
