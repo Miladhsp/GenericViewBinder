@@ -90,11 +90,7 @@ public class Transfer {
     }
 
     public void finishActivityForResult(ir.mich.genericviewbinder.Transfer.ResultActivity result) {
-        Intent intent = new Intent();
-        result.finish((resultCode, data) -> {
-            intent.putExtras(validData(data));
-            activity.setResult(resultCode, intent);
-        });
+        result.finish(activity::setResult);
         activity.finish();
     }
 
@@ -120,7 +116,7 @@ public class Transfer {
     }
 
     public interface Reply {
-        void setResult(int resultCode, Data data);
+        void setResult(int resultCode, Intent intent);
     }
 
     public interface Data {
