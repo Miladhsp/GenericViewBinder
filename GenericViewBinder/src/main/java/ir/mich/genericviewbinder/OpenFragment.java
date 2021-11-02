@@ -11,7 +11,7 @@ public class OpenFragment {
     public final FragmentBinder<?> fragment;
     public final String tag;
     public final String addToBackStack;
-    public final Bundle bundle;
+    public Bundle bundle;
 
     public OpenFragment(ViewGroup layout, FragmentBinder<?> fragment) {
         this.layout = layout;

@@ -32,6 +32,7 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     public Bundle args;
     public View view;
     public Activity activity;
+    protected Protected resultManager;
     protected Transfer transfer;
     protected Context context;
     protected VB binding;
@@ -62,4 +63,10 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     }
 
     protected abstract void onCreateView();
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Protected.invoke(resultManager).key(transfer.SET_FRAGMENT_RESULT_LISTENER);
+    }
 }

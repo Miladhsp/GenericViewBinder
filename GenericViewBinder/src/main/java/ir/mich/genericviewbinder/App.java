@@ -39,7 +39,7 @@ public class App extends Application {
         return main_activity_static;
     }
 
-    public static Context getAppContext(){
+    public static Context getAppContext() {
         return getApplication().getApplicationContext();
     }
 

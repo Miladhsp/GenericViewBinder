@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentResultListener;
 
 public class Transfer {
 
+    protected final String SET_FRAGMENT_RESULT_LISTENER = "SET_FRAGMENT_RESULT_LISTENER";
     private final FragmentActivity activity;
     private final Context context;
     private ActivityResultBinder<Intent, ActivityResult> activityLauncher;
@@ -40,7 +41,9 @@ public class Transfer {
         context.startActivity(intent);
     }
 
-    public void startFragment(ViewGroup layout, FragmentBinder<?> fragment, @Nullable String tag, @Nullable String addToBackStack, @Nullable Bundle bundle) {
+    public void startFragment(
+            ViewGroup layout, FragmentBinder<?> fragment,
+            @Nullable String tag, @Nullable String addToBackStack, @Nullable Bundle bundle) {
         fragment.setArguments((bundle == null) ? new Bundle() : bundle);
         activity.getSupportFragmentManager()
                 .beginTransaction()
@@ -51,10 +54,18 @@ public class Transfer {
 
     public void openSomeFragmentForResult(
             String requestKey, FragmentResultListener listener, OpenFragment fragment) {
-        this.fragment.requireActivity().getSupportFragmentManager()
-                .setFragmentResultListener(requestKey, this.fragment.getViewLifecycleOwner(), listener);
         startFragment(fragment.layout, fragment.fragment, fragment.tag,
                 fragment.addToBackStack, fragment.bundle);
+        if (this.fragment == null) {
+            (fragment.fragment).resultManager = new Protected(SET_FRAGMENT_RESULT_LISTENER, () -> {
+                activity.getSupportFragmentManager()
+                        .setFragmentResultListener(requestKey,
+                                fragment.fragment.getViewLifecycleOwner(), listener);
+            });
+        } else {
+            this.fragment.requireActivity().getSupportFragmentManager()
+                    .setFragmentResultListener(requestKey, this.fragment.getViewLifecycleOwner(), listener);
+        }
     }
 
     public void closeSomeFragmentForResult(String requestKey, Bundle result) {
@@ -82,7 +93,7 @@ public class Transfer {
         activityLauncher.launch(intent, onActivityResult);
     }
 
-    public void closeSomeActivityForResult(ResultActivity result) {
+    public void closeSomeActivityForResult(ir.mich.genericviewbinder.Transfer.ResultActivity result) {
         result.finish(new Intent());
         activity.finish();
     }
