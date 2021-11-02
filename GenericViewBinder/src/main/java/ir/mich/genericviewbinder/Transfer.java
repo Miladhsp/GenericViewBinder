@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentResultListener;
 
 public class Transfer {
 
+    public static final int RESULT_FIRST_USER = 1;
     protected final String SET_FRAGMENT_RESULT_LISTENER = "SET_FRAGMENT_RESULT_LISTENER";
     private final FragmentActivity activity;
     private final Context context;
@@ -94,12 +95,21 @@ public class Transfer {
     }
 
     public void closeSomeActivityForResult(ir.mich.genericviewbinder.Transfer.ResultActivity result) {
-        result.finish(new Intent());
+        result.finish(activity::setResult);
         activity.finish();
     }
 
+    /**
+     * Call reply.setResult to set the result that your activity will return to its caller.
+     * {@link android.app.Activity.RESULT_CANCELED}
+     * {@link android.app.Activity.RESULT_OK}
+     * {@link android.app.Activity.RESULT_FIRST_USER}
+     */
     public interface ResultActivity {
-        public void finish(Intent replyIntent);
+        public void finish(Reply reply);
     }
 
+    public interface Reply {
+        void setResult(int resultCode, Intent data);
+    }
 }
