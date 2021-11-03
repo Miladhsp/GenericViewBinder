@@ -27,6 +27,7 @@ public class MainFragment extends FragmentBinder<FragmentMainBinding> implements
         transfer.startActivityForResult(
                 MainActivity.class, null, result -> {
                     binding.exampleText.setText("im Back from activity");
+                    toast("im Back from activity");
                 });
     }
 }

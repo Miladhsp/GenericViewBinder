@@ -60,8 +60,10 @@ public class Transfer {
                         .setFragmentResultListener(requestKey,
                                 fragment.fragment.getViewLifecycleOwner(), listener);
             });
-            Access.updateField(FragmentBinder.class, ((FragmentBinder<?>) fragment.fragment),
-                    "resultManager", aProtected);
+            Access.<FragmentBinder<?>>Field("resultManager",
+                    FragmentBinder.class, fragment.fragment)
+                    .setModifier_Field(false, null)
+                    .inject(aProtected);
         } else {
             this.fragment.requireActivity().getSupportFragmentManager()
                     .setFragmentResultListener(requestKey, this.fragment.getViewLifecycleOwner(), listener);
@@ -109,9 +111,9 @@ public class Transfer {
 
     /**
      * Call reply.setResult to set the result that your activity will return to its caller.
-     * {@link android.app.Activity.RESULT_CANCELED}
-     * {@link android.app.Activity.RESULT_OK}
-     * {@link android.app.Activity.RESULT_FIRST_USER}
+     * {android.app.Activity.RESULT_CANCELED}
+     * {android.app.Activity.RESULT_OK}
+     * {android.app.Activity.RESULT_FIRST_USER}
      */
     public interface ResultActivity {
         public void finish(Reply reply);

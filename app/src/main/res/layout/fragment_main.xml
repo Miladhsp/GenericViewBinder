@@ -8,17 +8,18 @@
     android:gravity="center"
     tools:context=".MainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
         android:id="@+id/example_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingBottom="350dp"
         android:shadowRadius="50"
+        android:clickable="false"
+        android:layout_marginHorizontal="110dp"
+        android:layout_marginVertical="100dp"
         android:text="@string/hello_blank_fragment"
         android:textColor="@color/white"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/btn_transfer"
