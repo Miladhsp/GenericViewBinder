@@ -51,15 +51,17 @@ public class Transfer {
     }
 
     public void startFragmentForResult(
-            String requestKey, FragmentResultListener listener, OpenFragment fragment) {
+            OpenFragment fragment, String requestKey, FragmentResultListener listener) {
         startFragment(fragment.layout, fragment.fragment, fragment.tag,
                 fragment.addToBackStack, fragment.data);
         if (this.fragment == null) {
-            (fragment.fragment).resultManager = new Protected(SET_FRAGMENT_RESULT_LISTENER, () -> {
+            Protected aProtected = new Protected(SET_FRAGMENT_RESULT_LISTENER, () -> {
                 activity.getSupportFragmentManager()
                         .setFragmentResultListener(requestKey,
                                 fragment.fragment.getViewLifecycleOwner(), listener);
             });
+            Access.updateField(FragmentBinder.class, ((FragmentBinder<?>) fragment.fragment),
+                    "resultManager", aProtected);
         } else {
             this.fragment.requireActivity().getSupportFragmentManager()
                     .setFragmentResultListener(requestKey, this.fragment.getViewLifecycleOwner(), listener);

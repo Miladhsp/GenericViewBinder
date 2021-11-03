@@ -32,10 +32,10 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     public Bundle args;
     public View view;
     public Activity activity;
-    protected Protected resultManager;
     protected Transfer transfer;
     protected Context context;
     protected VB binding;
+    private Protected resultManager;
 
     protected static void toast(CharSequence text) {
         App.toast(0, text);
@@ -47,7 +47,8 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = new GenericBinder<VB>(this, 0).inflate(inflater, container);
         view = binding.getRoot();
         context = binding.getRoot().getContext();

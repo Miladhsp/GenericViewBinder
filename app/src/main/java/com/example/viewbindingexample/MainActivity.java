@@ -29,6 +29,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
 //        android:id="@+id/text"
         binding.text.setText(" MainActivity ");
         binding.btnTransfer.setOnClickListener(this);
+
     }
 
     @Override

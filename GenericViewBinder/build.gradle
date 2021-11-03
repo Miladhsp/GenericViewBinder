@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdk 16
         targetSdk 31
-        versionCode 29
-        versionName "2.2.9"
+        versionCode 30
+        versionName "2.3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -60,7 +60,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.Miladhsp'
                 artifactId = 'GenericViewBinder'
-                version = '2.2.9'
+                version = '2.3.0'
             }
         }
     }
