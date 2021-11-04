@@ -63,7 +63,7 @@ include ':app'
 In the Android Manifest file, declare the following.
 
 <application    
-+ android:name="ir.mich.genericviewbinder.App"
++ android:name="ir.mich.genericviewbinder.base.App"
 ></application>
 ```
 
@@ -73,7 +73,7 @@ In the Android Manifest file, declare the following.
     package="com.example.example" >
 
     <application
-        android:name="ir.mich.genericviewbinder.App"		<--add
+        android:name="ir.mich.genericviewbinder.base.App"		<--add
         
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -105,8 +105,8 @@ import android.annotation.SuppressLint;
 
 import com.example.viewbindingexample.databinding.ActivityMainBinding;
 
-import ir.mich.genericviewbinder.ActivityBinder;
-import ir.mich.genericviewbinder.App;
+import ir.mich.genericviewbinder.base.ActivityBinder;
+import ir.mich.genericviewbinder.base.App;
 
 
 public class MainActivity extends ActivityBinder<ActivityMainBinding> {

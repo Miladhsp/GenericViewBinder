@@ -1,4 +1,4 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.base;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
+
+import ir.mich.genericviewbinder.tools.Transfer;
 
 
 public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatActivity {
@@ -17,7 +19,7 @@ public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatAc
      * <p>
      * <application
      * ...
-     * android:name="ir.mich.genericviewbinder.App"
+     * android:name="ir.mich.genericviewbinder.base.App"
      * >
      * </application>
      */

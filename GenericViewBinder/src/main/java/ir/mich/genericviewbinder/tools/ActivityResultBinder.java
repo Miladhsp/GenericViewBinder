@@ -1,4 +1,4 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.tools;
 
 import android.content.Intent;
 

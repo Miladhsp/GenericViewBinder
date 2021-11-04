@@ -8,7 +8,7 @@ import com.example.viewbindingexample.databinding.ActivityMainBinding;
 
 import java.util.Random;
 
-import ir.mich.genericviewbinder.ActivityBinder;
+import ir.mich.genericviewbinder.base.ActivityBinder;
 
 
 public class MainActivity extends ActivityBinder<ActivityMainBinding> implements View.OnClickListener {

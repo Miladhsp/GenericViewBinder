@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.example.viewbindingexample.databinding.FragmentMainBinding;
 
-import ir.mich.genericviewbinder.FragmentBinder;
+import ir.mich.genericviewbinder.base.FragmentBinder;
 
 public class MainFragment extends FragmentBinder<FragmentMainBinding> implements View.OnClickListener {
 

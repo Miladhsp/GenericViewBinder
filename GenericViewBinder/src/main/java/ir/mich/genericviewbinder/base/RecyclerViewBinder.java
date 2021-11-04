@@ -1,4 +1,4 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.base;
 
 
 import android.annotation.SuppressLint;
@@ -29,7 +29,7 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
      * <p>
      * <application
      * ...
-     * android:name="ir.mich.genericviewbinder.App"
+     * android:name="ir.mich.genericviewbinder.base.App"
      * >
      * </application>
      */
@@ -133,18 +133,6 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
         notifyDataSetChanged();
     }
 
-    protected interface FilterBy<Model> {
-        String item(Model model);
-    }
-
-    public static abstract class Holder<Model> extends RecyclerView.ViewHolder {
-        public Holder(@NonNull View itemView) {
-            super(itemView);
-        }
-
-        public abstract void bind(Model item, int position);
-    }
-
     public RecyclerView getRecyclerView() {
         return recyclerView;
     }
@@ -159,5 +147,17 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
 
     public void setLayout(RecyclerView.LayoutManager layout) {
         this.layout = layout;
+    }
+
+    protected interface FilterBy<Model> {
+        String item(Model model);
+    }
+
+    public static abstract class Holder<Model> extends RecyclerView.ViewHolder {
+        public Holder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        public abstract void bind(Model item, int position);
     }
 }

@@ -1,4 +1,4 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.base;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,6 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
+import ir.mich.genericviewbinder.tools.Secretary;
+import ir.mich.genericviewbinder.tools.Transfer;
+
 public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     /**
      * Do this:
@@ -21,7 +24,7 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
      * <p>
      * <application
      * ...
-     * android:name="ir.mich.genericviewbinder.App"
+     * android:name="ir.mich.genericviewbinder.base.App"
      * >
      * </application>
      */
@@ -29,13 +32,13 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     public static final Activity activity_main = App.getActivity();
     @SuppressLint("StaticFieldLeak")
     public static final Context context_main = App.getContext();
+    private final Secretary resultManager = null;
     public Bundle args;
     public View view;
     public Activity activity;
     protected Transfer transfer;
     protected Context context;
     protected VB binding;
-    private Protected resultManager;
 
     protected static void toast(CharSequence text) {
         App.toast(0, text);
@@ -68,6 +71,6 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Protected.invoke(resultManager).key(transfer.SET_FRAGMENT_RESULT_LISTENER);
+        Secretary.invoke(resultManager);
     }
 }

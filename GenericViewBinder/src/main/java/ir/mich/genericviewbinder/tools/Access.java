@@ -1,8 +1,10 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.tools;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+
+import ir.mich.genericviewbinder.tools.models.Caller;
+import ir.mich.genericviewbinder.tools.models.Injector;
 
 public class Access<Instance> {
     private final Class<?> clazz;
@@ -32,15 +34,18 @@ public class Access<Instance> {
         Field declaredField = null;
         try {
             declaredField = clazz.getDeclaredField(fieldName);
-            if (PRIVATE != null) {
-                declaredField.setAccessible(!PRIVATE);
-            }
+            boolean isAccessible = declaredField.isAccessible();
             if (FINAL != null) {
+                declaredField.setAccessible(true);
                 Field modifiersField = Field.class.getDeclaredField("slot");
                 modifiersField.setAccessible(true);
-                modifiersField.setInt(declaredField, declaredField.getModifiers()
-                        & ((FINAL) ? Modifier.FINAL : ~Modifier.FINAL));
-                //modifiersField.set(modifiersField, 3);
+                modifiersField.set(modifiersField, (FINAL) ? -1 : 3);
+                if (PRIVATE == null) {
+                    declaredField.setAccessible(isAccessible);
+                }
+            }
+            if (PRIVATE != null) {
+                declaredField.setAccessible(!PRIVATE);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,44 +64,7 @@ public class Access<Instance> {
         return new Caller<>(instance, declaredMethod);
     }
 
-    public static class Injector<Instance> {
-
-        private Instance instance;
-        private Field declaredField;
-
-        private Injector(Instance instance, Field declaredField) {
-            this.instance = instance;
-            this.declaredField = declaredField;
-        }
-
-        public <Value> void inject(Value newValue) {
-            try {
-                declaredField.set(instance, newValue);
-            } catch (IllegalAccessException e) {
-                App.toast(e.toString());
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public class Caller<Instance> {
-
-        private Instance instance;
-        private Method declaredMethod;
-
-        private Caller(Instance instance, Method declaredMethod) {
-            this.instance = instance;
-            this.declaredMethod = declaredMethod;
-        }
-
-        public <Value> Value invoke(Object... args) {
-            try {
-                return (Value) declaredMethod.invoke(instance, args);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
 }
+
+
 

@@ -1,4 +1,4 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.base;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
@@ -16,7 +16,7 @@ import android.widget.Toast;
  * <p>
  * <application
  * ...
- * android:name="ir.mich.genericviewbinder.App"
+ * android:name="ir.mich.genericviewbinder.base.App"
  * >
  * </application>
  */
@@ -51,7 +51,7 @@ public class App extends Application {
         App.toast(1, text);
     }
 
-    protected static void toast(int duration, CharSequence text) {
+    public static void toast(int duration, CharSequence text) {
         Toast.makeText(getContext(), text, (duration == 0) ? LENGTH_SHORT : LENGTH_LONG).show();
     }
 

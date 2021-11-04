@@ -1,4 +1,4 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.tools;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,12 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentResultListener;
 
+import ir.mich.genericviewbinder.base.App;
+import ir.mich.genericviewbinder.base.FragmentBinder;
+
 public class Transfer {
 
-    protected final String SET_FRAGMENT_RESULT_LISTENER = "SET_FRAGMENT_RESULT_LISTENER";
     private final FragmentActivity activity;
     private final Context context;
-    private ActivityResultBinder<Intent, ActivityResult> activityLauncher;
+    private final ActivityResultBinder<Intent, ActivityResult> activityLauncher;
     private Fragment fragment = null;
 
     public Transfer(AppCompatActivity activity) {
@@ -55,15 +57,15 @@ public class Transfer {
         startFragment(fragment.layout, fragment.fragment, fragment.tag,
                 fragment.addToBackStack, fragment.data);
         if (this.fragment == null) {
-            Protected aProtected = new Protected(SET_FRAGMENT_RESULT_LISTENER, () -> {
+            Secretary aSecretary = new Secretary(() -> {
                 activity.getSupportFragmentManager()
                         .setFragmentResultListener(requestKey,
                                 fragment.fragment.getViewLifecycleOwner(), listener);
             });
             Access.<FragmentBinder<?>>Field("resultManager",
                     FragmentBinder.class, fragment.fragment)
-                    .setModifier_Field(false, null)
-                    .inject(aProtected);
+                    .setModifier_Field(false, false)
+                    .inject(aSecretary);
         } else {
             this.fragment.requireActivity().getSupportFragmentManager()
                     .setFragmentResultListener(requestKey, this.fragment.getViewLifecycleOwner(), listener);
@@ -73,8 +75,7 @@ public class Transfer {
     public void finishFragmentForResult(String requestKey, Data data) {
         fragment.requireActivity().getSupportFragmentManager()
                 .setFragmentResult(requestKey, validData(data));
-        //fragment.requireActivity().getFragmentManager().popBackStack();
-        App.getActivity().onBackPressed();
+        finishFragment();
     }
 
     public Bundle getExtras() {
@@ -93,9 +94,18 @@ public class Transfer {
         activityLauncher.launch(intent, onActivityResult);
     }
 
-    public void finishActivityForResult(ir.mich.genericviewbinder.Transfer.ResultActivity result) {
+    public void finishActivityForResult(Transfer.ResultActivity result) {
         result.finish(activity::setResult);
+        finishActivity();
+    }
+
+    public void finishActivity() {
         activity.finish();
+    }
+
+    public void finishFragment() {
+        //fragment.requireActivity().getFragmentManager().popBackStack();
+        App.getActivity().onBackPressed();
     }
 
     private Bundle validData(Data data) {

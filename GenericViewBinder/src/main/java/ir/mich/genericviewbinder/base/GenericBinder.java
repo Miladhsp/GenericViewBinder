@@ -1,4 +1,4 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.base;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

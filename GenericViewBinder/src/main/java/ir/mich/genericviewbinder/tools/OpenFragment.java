@@ -1,10 +1,11 @@
-package ir.mich.genericviewbinder;
+package ir.mich.genericviewbinder.tools;
 
-import android.os.Bundle;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import ir.mich.genericviewbinder.base.FragmentBinder;
 
 public class OpenFragment {
     public final ViewGroup layout;
