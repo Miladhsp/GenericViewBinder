@@ -34,11 +34,11 @@ public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatAc
     protected VB binding;
 
     protected static void toast(CharSequence text) {
-        App.toast(0, text);
+        App.toast(text);
     }
 
     protected static void toast_long(CharSequence text) {
-        App.toast(1, text);
+        App.toast_long(text);
     }
 
     protected abstract void onCreate();

@@ -3,7 +3,6 @@ package ir.mich.genericviewbinder.tools;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ViewGroup;
 
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.Nullable;
@@ -42,34 +41,31 @@ public class Transfer {
         context.startActivity(intent);
     }
 
-    public void startFragment(
-            ViewGroup layout, FragmentBinder<?> fragment,
-            @Nullable String tag, @Nullable String addToBackStack, Data data) {
-        fragment.setArguments(validData(data));
+    public void startFragment(OpenFragment open) {
+        open.fragment.setArguments(validData(open.data));
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .replace(layout.getId(), fragment, tag)
-                .addToBackStack(addToBackStack)
+                .replace(open.layout.getId(), open.fragment, open.tag)
+                .addToBackStack(open.addToBackStack)
                 .commit();
     }
 
     public void startFragmentForResult(
-            OpenFragment fragment, String requestKey, FragmentResultListener listener) {
-        startFragment(fragment.layout, fragment.fragment, fragment.tag,
-                fragment.addToBackStack, fragment.data);
+            OpenFragment open, String requestKey, FragmentResultListener listener) {
+        startFragment(open);
         if (this.fragment == null) {
-            Secretary aSecretary = new Secretary(() -> {
-                activity.getSupportFragmentManager()
-                        .setFragmentResultListener(requestKey,
-                                fragment.fragment.getViewLifecycleOwner(), listener);
-            });
-            Access.<FragmentBinder<?>>Field("resultManager",
-                    FragmentBinder.class, fragment.fragment)
-                    .setModifier_Field(false, false)
-                    .inject(aSecretary);
+            Secretary secretary = new Secretary(() -> activity.getSupportFragmentManager()
+                    .setFragmentResultListener(requestKey,
+                            open.fragment.getViewLifecycleOwner(), listener));
+            Access.Field
+                    .builder(true, "resultManager",
+                            FragmentBinder.class, open.fragment)
+                    .setModifier(false, false)
+                    .inject(secretary);
         } else {
             this.fragment.requireActivity().getSupportFragmentManager()
-                    .setFragmentResultListener(requestKey, this.fragment.getViewLifecycleOwner(), listener);
+                    .setFragmentResultListener(requestKey,
+                            this.fragment.getViewLifecycleOwner(), listener);
         }
     }
 
@@ -127,7 +123,7 @@ public class Transfer {
      * {android.app.Activity.RESULT_FIRST_USER}
      */
     public interface ResultActivity {
-        public void finish(Reply reply);
+        void finish(Reply reply);
     }
 
     public interface Reply {

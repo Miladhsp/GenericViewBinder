@@ -41,11 +41,11 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     protected VB binding;
 
     protected static void toast(CharSequence text) {
-        App.toast(0, text);
+        App.toast(text);
     }
 
     protected static void toast_long(CharSequence text) {
-        App.toast(1, text);
+        App.toast_long(text);
     }
 
     @Nullable

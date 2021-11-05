@@ -1,68 +1,85 @@
 package ir.mich.genericviewbinder.tools;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import ir.mich.genericviewbinder.tools.models.Caller;
 import ir.mich.genericviewbinder.tools.models.Injector;
 
-public class Access<Instance> {
-    private final Class<?> clazz;
-    private final Class<?>[] parameterTypes;
-    private final Instance instance;
-    private final String fieldName;
-    private final String methodName;
+public class Access {
 
-    private Access(String fieldName, String methodName, Class<?> clazz, Instance instance, Class<?>... parameterTypes) {
-        this.fieldName = fieldName;
-        this.methodName = methodName;
-        this.clazz = clazz;
-        this.instance = instance;
-        this.parameterTypes = parameterTypes;
+    public static class Method<Instance> {
+        private final boolean DECLARED;
+        private final String methodName;
+        private final Class<?> clazz;
+        private final Instance instance;
+        private final Class<?>[] parameterTypes;
+
+        private Method(boolean DECLARED, String methodName, Class<?> clazz, Instance instance, Class<?>[] parameterTypes) {
+            this.DECLARED = DECLARED;
+            this.methodName = methodName;
+            this.clazz = clazz;
+            this.instance = instance;
+            this.parameterTypes = parameterTypes;
+        }
+
+        public static <Instance> Method<Instance> builder(boolean DECLARED, String methodName, Class<?> clazz, Instance instance, Class<?>[] parameterTypes) {
+            return new Method<>(DECLARED, methodName, clazz, instance, parameterTypes);
+        }
+
+        public Caller<Instance> setModifier(Boolean PRIVATE) {
+            java.lang.reflect.Method method = null;
+            try {
+                method = DECLARED ? clazz.getDeclaredMethod(methodName, parameterTypes)
+                        : clazz.getMethod(methodName, parameterTypes);
+                method.setAccessible(!PRIVATE);
+            } catch (SecurityException | IllegalArgumentException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            return new Caller<>(instance, method);
+        }
     }
 
-    public static <Instance> Access<Instance> Field(String fieldName, Class<?> clazz, Instance instance) {
-        return new Access<>(fieldName, null, clazz, instance, null);
-    }
+    public static class Field<Instance> {
 
-    public static <Instance> Access<Instance> Method(String methodName, Class<?> clazz, Instance instance, Class<?>... parameterTypes) {
-        return new Access<>(null, methodName, clazz, instance, parameterTypes);
-    }
+        private final boolean DECLARED;
+        private final String fieldName;
+        private final Class<?> clazz;
+        private final Instance instance;
 
+        private Field(boolean DECLARED, String fieldName, Class<?> clazz, Instance instance) {
+            this.DECLARED = DECLARED;
+            this.fieldName = fieldName;
+            this.clazz = clazz;
+            this.instance = instance;
+        }
 
-    public Injector<Instance> setModifier_Field(Boolean PRIVATE, Boolean FINAL) {
-        Field declaredField = null;
-        try {
-            declaredField = clazz.getDeclaredField(fieldName);
-            boolean isAccessible = declaredField.isAccessible();
-            if (FINAL != null) {
-                declaredField.setAccessible(true);
-                Field modifiersField = Field.class.getDeclaredField("slot");
-                modifiersField.setAccessible(true);
-                modifiersField.set(modifiersField, (FINAL) ? -1 : 3);
-                if (PRIVATE == null) {
-                    declaredField.setAccessible(isAccessible);
+        public static <Instance> Field<Instance> builder(boolean DECLARED, String fieldName, Class<?> clazz, Instance instance) {
+            return new Field<>(DECLARED, fieldName, clazz, instance);
+        }
+
+        public Injector<Instance> setModifier(Boolean PRIVATE, Boolean FINAL) {
+            java.lang.reflect.Field field = null;
+            try {
+                field = DECLARED ? clazz.getDeclaredField(fieldName)
+                        : clazz.getField(fieldName);
+                boolean isAccessible = field.isAccessible();
+                if (FINAL != null) {
+                    field.setAccessible(true);
+                    java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("slot");
+                    modifiersField.setAccessible(true);
+                    modifiersField.set(modifiersField, (FINAL) ? -1 : 3);
+                    if (PRIVATE == null) {
+                        field.setAccessible(isAccessible);
+                    }
                 }
+                if (PRIVATE != null) {
+                    field.setAccessible(!PRIVATE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            if (PRIVATE != null) {
-                declaredField.setAccessible(!PRIVATE);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return new Injector<>(instance, field);
         }
-        return new Injector<>(instance, declaredField);
     }
 
-    public Caller<Instance> setModifier_Method(Boolean PRIVATE) {
-        Method declaredMethod = null;
-        try {
-            declaredMethod = clazz.getDeclaredMethod(methodName, parameterTypes);
-            declaredMethod.setAccessible(!PRIVATE);
-        } catch (SecurityException | IllegalArgumentException | NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        return new Caller<>(instance, declaredMethod);
-    }
 
 }
 

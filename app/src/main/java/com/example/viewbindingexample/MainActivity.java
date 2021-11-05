@@ -9,6 +9,7 @@ import com.example.viewbindingexample.databinding.ActivityMainBinding;
 import java.util.Random;
 
 import ir.mich.genericviewbinder.base.ActivityBinder;
+import ir.mich.genericviewbinder.tools.models.OpenFragment;
 
 
 public class MainActivity extends ActivityBinder<ActivityMainBinding> implements View.OnClickListener {
@@ -27,27 +28,31 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     @Override
     protected void onCreate() {
 //        android:id="@+id/text"
+//        findViewById(R.id.text);
         binding.text.setText(" MainActivity ");
         binding.btnTransfer.setOnClickListener(this);
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         if (v.getId() == binding.btnTransfer.getId()) {
             binding.text.setText("MainFragment");
             binding.count.setText("" + ++i);
-            transfer.startFragment(
+            transfer.startFragment(OpenFragment.builder(
                     binding.redFrame,
                     new MainFragment(),
                     null,
-                    null, bundle -> {
+                    null,
+                    bundle -> {
                         bundle.putInt("color", randomColor());
                         return bundle;
-                    });
+                    }));
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBackPressed() {
         super.onBackPressed();

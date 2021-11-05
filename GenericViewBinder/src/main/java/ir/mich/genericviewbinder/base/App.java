@@ -44,15 +44,11 @@ public class App extends Application {
     }
 
     public static void toast(CharSequence text) {
-        App.toast(0, text);
+        Toast.makeText(getContext(), text, LENGTH_SHORT).show();
     }
 
     public static void toast_long(CharSequence text) {
-        App.toast(1, text);
-    }
-
-    public static void toast(int duration, CharSequence text) {
-        Toast.makeText(getContext(), text, (duration == 0) ? LENGTH_SHORT : LENGTH_LONG).show();
+        Toast.makeText(getContext(), text, LENGTH_LONG).show();
     }
 
     @Override
