@@ -102,7 +102,8 @@ public class Transfer {
 
     public void finishFragment() {
         //fragment.requireActivity().getFragmentManager().popBackStack();
-        App.getActivity().onBackPressed();
+        fragment.requireActivity().onBackPressed();
+        //App.getActivity().onBackPressed();
     }
 
     private Bundle validData(Data data) {

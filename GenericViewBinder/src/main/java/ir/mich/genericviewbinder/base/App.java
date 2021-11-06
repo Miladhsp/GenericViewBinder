@@ -43,6 +43,10 @@ public class App extends Application {
         return getApplication().getApplicationContext();
     }
 
+    public static void forceStop() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
     public static void toast(CharSequence text) {
         Toast.makeText(getContext(), text, LENGTH_SHORT).show();
     }

@@ -33,23 +33,27 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
      * >
      * </application>
      */
-    @SuppressLint("StaticFieldLeak")
-    public static Activity activity_main = App.getActivity();
-    @SuppressLint("StaticFieldLeak")
-    public static Context context_main = App.getContext();
     protected Activity activity;
     protected Context context;
     protected VB binding;
     protected View view;
-    private List<Model> models = new ArrayList<Model>();
-    private List<Model> filteredModels = new ArrayList<Model>();
+    private List<Model> models = new ArrayList<>();
+    private List<Model> filteredModels = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layout;
+
+    public RecyclerViewBinder(RecyclerView recyclerView) {
+        this(recyclerView, new LinearLayoutManager(App.getContext()));
+    }
 
     public RecyclerViewBinder(RecyclerView recyclerView, RecyclerView.LayoutManager layout) {
         this.recyclerView = recyclerView;
         this.layout = layout;
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity_main));
+        recyclerView.setLayoutManager(new LinearLayoutManager(App.getActivity()));
+        init();
+    }
+
+    protected void init() {
     }
 
     @NonNull

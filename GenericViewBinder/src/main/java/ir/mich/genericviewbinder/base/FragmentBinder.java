@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewbinding.ViewBinding;
 
 import ir.mich.genericviewbinder.tools.Secretary;
@@ -28,14 +30,11 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
      * >
      * </application>
      */
-    @SuppressLint("StaticFieldLeak")
-    public static final Activity activity_main = App.getActivity();
-    @SuppressLint("StaticFieldLeak")
-    public static final Context context_main = App.getContext();
     private final Secretary resultManager = null;
     public Bundle args;
     public View view;
     public Activity activity;
+    public FragmentActivity activity_require;
     protected Transfer transfer;
     protected Context context;
     protected VB binding;
@@ -56,6 +55,7 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
         view = binding.getRoot();
         context = binding.getRoot().getContext();
         activity = (Activity) context;
+        activity_require = requireActivity();
         transfer = new Transfer(this);
         args = transfer.getExtras();
         init();
@@ -64,6 +64,10 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     }
 
     protected void init() {
+    }
+
+    protected FragmentManager getSupportFragmentManager(){
+        return   requireActivity().getSupportFragmentManager();
     }
 
     protected abstract void onCreateView();
