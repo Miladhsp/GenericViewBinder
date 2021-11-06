@@ -26,7 +26,6 @@ public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatAc
     public Activity activity;
     protected Transfer transfer;
     protected Context context;
-    protected Bundle args;
     protected VB binding;
 
     protected static void toast(CharSequence text) {
@@ -47,14 +46,10 @@ public abstract class ActivityBinder<VB extends ViewBinding> extends AppCompatAc
         context = this;
         activity = this;
         transfer = new Transfer(this);
-        args = transfer.getExtras();
         if (getIntent().cloneFilter().getAction() != null) {
             App.main_activity_static = this;
         }
-        init();
         onCreate();
     }
 
-    protected void init() {
-    }
 }

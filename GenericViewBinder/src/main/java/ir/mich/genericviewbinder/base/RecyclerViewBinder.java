@@ -50,10 +50,6 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
         this.recyclerView = recyclerView;
         this.layout = layout;
         recyclerView.setLayoutManager(new LinearLayoutManager(App.getActivity()));
-        init();
-    }
-
-    protected void init() {
     }
 
     @NonNull
@@ -114,7 +110,7 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
         };
     }
 
-    protected abstract FilterBy<Model> filterBy();
+    public abstract FilterBy<Model> filterBy();
 
     public List<Model> getFilteredResults(String constraint, FilterBy<Model> filterBy) {
         List<Model> results = new ArrayList<>();

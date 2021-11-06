@@ -31,7 +31,6 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
      * </application>
      */
     private final Secretary resultManager = null;
-    public Bundle args;
     public View view;
     public Activity activity;
     public FragmentActivity activity_require;
@@ -57,21 +56,13 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
         activity = (Activity) context;
         activity_require = requireActivity();
         transfer = new Transfer(this);
-        args = transfer.getExtras();
-        init();
         onCreateView();
         return view;
     }
 
-    protected void init() {
-    }
-
-    protected FragmentManager getSupportFragmentManager(){
-        return   requireActivity().getSupportFragmentManager();
-    }
-
     protected abstract void onCreateView();
 
+    @SuppressWarnings("null")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

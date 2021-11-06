@@ -12,6 +12,7 @@ public class Caller<Instance> {
         this.declaredMethod = declaredMethod;
     }
 
+    @SuppressWarnings("unchecked")
     public <Value> Value invoke(Object... args) {
         try {
             return (Value) declaredMethod.invoke(instance, args);
