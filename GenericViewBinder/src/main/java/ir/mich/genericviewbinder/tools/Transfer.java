@@ -24,15 +24,15 @@ public class Transfer {
 
     public Transfer(AppCompatActivity activity) {
         this.activity = activity;
-        context = activity;
-        activityLauncher = ActivityResultBinder.registerActivityForResult(activity);
+        this.context = activity;
+        this.activityLauncher = ActivityResultBinder.registerActivityForResult(activity);
     }
 
     public Transfer(Fragment fragment) {
         this.activity = fragment.getActivity();
-        context = fragment.getActivity();
+        this.context = fragment.getActivity();
         this.fragment = fragment;
-        activityLauncher = ActivityResultBinder.registerActivityForResult(fragment);
+        this.activityLauncher = ActivityResultBinder.registerActivityForResult(fragment);
     }
 
     public void startActivity(Class<?> clazz, @Nullable Data data) {

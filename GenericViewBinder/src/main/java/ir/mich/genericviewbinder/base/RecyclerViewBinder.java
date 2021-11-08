@@ -49,7 +49,7 @@ public abstract class RecyclerViewBinder<Model, VB extends ViewBinding>
     public RecyclerViewBinder(RecyclerView recyclerView, RecyclerView.LayoutManager layout) {
         this.recyclerView = recyclerView;
         this.layout = layout;
-        recyclerView.setLayoutManager(new LinearLayoutManager(App.getActivity()));
+        recyclerView.setLayoutManager((layout == null) ? new LinearLayoutManager(App.getActivity()) : layout);
     }
 
     @NonNull
