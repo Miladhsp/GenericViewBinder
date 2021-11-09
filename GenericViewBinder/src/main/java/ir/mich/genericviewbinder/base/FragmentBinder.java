@@ -1,6 +1,5 @@
 package ir.mich.genericviewbinder.base;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -12,11 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewbinding.ViewBinding;
 
 import ir.mich.genericviewbinder.tools.Secretary;
 import ir.mich.genericviewbinder.tools.Transfer;
+import ir.mich.genericviewbinder.tools.models.FragmentDeepChangedListener;
 
 public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     /**
@@ -67,5 +66,12 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Secretary.invoke(resultManager);
+    }
+
+
+    public void setFragmentDeepChangedListener(FragmentDeepChangedListener fragmentDeepChangedListener) {
+        activity_require.getSupportFragmentManager().addOnBackStackChangedListener(() -> {
+            fragmentDeepChangedListener.onDeepChangedListener(activity_require.getSupportFragmentManager().getBackStackEntryCount() - 1);
+        });
     }
 }

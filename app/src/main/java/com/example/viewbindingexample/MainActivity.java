@@ -9,6 +9,8 @@ import com.example.viewbindingexample.databinding.ActivityMainBinding;
 import java.util.Random;
 
 import ir.mich.genericviewbinder.base.ActivityBinder;
+import ir.mich.genericviewbinder.tools.RunOnce;
+import ir.mich.genericviewbinder.tools.models.FirstTimeListener;
 import ir.mich.genericviewbinder.tools.models.OpenFragment;
 
 
@@ -31,7 +33,17 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
 //        findViewById(R.id.text);
         binding.text.setText(" MainActivity ");
         binding.btnTransfer.setOnClickListener(this);
+        RunOnce.FirstInstall.init("First", new FirstTimeListener() {
+            @Override
+            public void onFirstTime() {
+                toast("Welcome");
+            }
 
+            @Override
+            public void onNotFirstTime() {
+                toast("✔");
+            }
+        });
     }
 
     @SuppressLint("SetTextI18n")
