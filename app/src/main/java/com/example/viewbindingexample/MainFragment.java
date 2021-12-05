@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.viewbindingexample.databinding.FragmentMainBinding;
 
 import ir.mich.genericviewbinder.base.FragmentBinder;
+import ir.mich.genericviewbinder.tools.Colors;
 import ir.mich.genericviewbinder.tools.RunOnce;
 
 public class MainFragment extends FragmentBinder<FragmentMainBinding> implements View.OnClickListener {
@@ -19,7 +20,7 @@ public class MainFragment extends FragmentBinder<FragmentMainBinding> implements
         int color = transfer.getExtras().getInt("color");
 //        android:id="@+id/example_text"
 //        view.findViewById(R.id.example_text);
-        binding.exampleText.setText("Color is " + hexColor(color));
+        binding.exampleText.setText("Color is " + Colors.hexColor(color));
         binding.btnTransfer.setOnClickListener(this);
         binding.root.setBackgroundColor(color);
         RunOnce.FirstRun.init(this, "123", new RunOnce.FirstTimeListener() {
@@ -30,13 +31,9 @@ public class MainFragment extends FragmentBinder<FragmentMainBinding> implements
 
             @Override
             public void onNotFirstTime() {
-                Log.println(Log.ERROR,"color",binding.exampleText.getText().toString());
+                Log.println(Log.ERROR, "color", binding.exampleText.getText().toString());
             }
         });
-    }
-
-    private String hexColor(int color) {
-        return String.format("#%06X", (0xFFFFFF & color));
     }
 
     @SuppressLint("SetTextI18n")

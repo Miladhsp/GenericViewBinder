@@ -69,10 +69,9 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
 
 
     public void setFragmentDeepChangedListener(FragmentDeepChangedListener fragmentDeepChangedListener) {
-        activity_require.getSupportFragmentManager().addOnBackStackChangedListener(() -> {
-            fragmentDeepChangedListener.onDeepChangedListener(activity_require.getSupportFragmentManager().getBackStackEntryCount() - 1);
-        });
+        activity_require.getSupportFragmentManager().addOnBackStackChangedListener(() -> fragmentDeepChangedListener.onDeepChangedListener(activity_require.getSupportFragmentManager().getBackStackEntryCount() - 1));
     }
+
     public interface FragmentDeepChangedListener {
         void onDeepChangedListener(int deep);
     }

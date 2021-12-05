@@ -1,15 +1,13 @@
 package com.example.viewbindingexample;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.view.View;
 
 import com.example.viewbindingexample.databinding.ActivityMainBinding;
 
-import java.util.Random;
-
 import ir.mich.genericviewbinder.base.ActivityBinder;
 import ir.mich.genericviewbinder.base.App;
+import ir.mich.genericviewbinder.tools.Colors;
 import ir.mich.genericviewbinder.tools.RunOnce;
 import ir.mich.genericviewbinder.tools.models.OpenFragment;
 
@@ -18,14 +16,6 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
 
     private static int activityCounter;
     private int fragmentCounter;
-
-    private static int randomColor() {
-        Random rnd = new Random();
-        return Color.argb(255,
-                rnd.nextInt(256),
-                rnd.nextInt(256),
-                rnd.nextInt(256));
-    }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -60,7 +50,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
                     null,
                     null,
                     bundle -> {
-                        bundle.putInt("color", randomColor());
+                        bundle.putInt("color", Colors.random());
                         return bundle;
                     }));
         }
@@ -71,7 +61,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     public void onBackPressed() {
         super.onBackPressed();
         binding.count.setText("" + --fragmentCounter);
-        if (fragmentCounter == 0){
+        if (fragmentCounter == 0) {
             binding.text.setText("MainActivity");
         }
     }
@@ -79,7 +69,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(activityCounter--==1){
+        if (activityCounter-- == 1) {
             App.forceStop();
         }
     }

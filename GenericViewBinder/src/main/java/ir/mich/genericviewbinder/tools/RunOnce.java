@@ -12,6 +12,12 @@ public class RunOnce {
 
     private static final String KEY = "kQkn2cLUopXw6uKKuUE8";
 
+    public interface FirstTimeListener {
+        void onFirstTime();
+
+        void onNotFirstTime();
+    }
+
     public static class FirstRun {
         private static HashMap<Class<?>, ArrayList<String>> map = new HashMap<>();
 
@@ -69,18 +75,13 @@ public class RunOnce {
             }
         }
 
-        public void remove(String key){
+        public void remove(String key) {
             KeyStore.getSharedPreferences(KEY).edit().remove(KEY).apply();
         }
 
         public void clear() {
             KeyStore.getSharedPreferences(KEY).edit().clear().apply();
         }
-    }
-
-    public interface FirstTimeListener {
-        void onFirstTime();
-        void onNotFirstTime();
     }
 
 }
