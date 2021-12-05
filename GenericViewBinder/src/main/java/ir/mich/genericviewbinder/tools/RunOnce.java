@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import ir.mich.genericviewbinder.tools.models.FirstTimeListener;
-
 public class RunOnce {
 
     private static final String KEY = "kQkn2cLUopXw6uKKuUE8";
@@ -79,4 +77,10 @@ public class RunOnce {
             KeyStore.getSharedPreferences(KEY).edit().clear().apply();
         }
     }
+
+    public interface FirstTimeListener {
+        void onFirstTime();
+        void onNotFirstTime();
+    }
+
 }

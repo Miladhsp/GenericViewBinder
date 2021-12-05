@@ -9,14 +9,15 @@ import com.example.viewbindingexample.databinding.ActivityMainBinding;
 import java.util.Random;
 
 import ir.mich.genericviewbinder.base.ActivityBinder;
+import ir.mich.genericviewbinder.base.App;
 import ir.mich.genericviewbinder.tools.RunOnce;
-import ir.mich.genericviewbinder.tools.models.FirstTimeListener;
 import ir.mich.genericviewbinder.tools.models.OpenFragment;
 
 
 public class MainActivity extends ActivityBinder<ActivityMainBinding> implements View.OnClickListener {
 
-    private int i;
+    private static int activityCounter;
+    private int fragmentCounter;
 
     private static int randomColor() {
         Random rnd = new Random();
@@ -33,7 +34,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
 //        findViewById(R.id.text);
         binding.text.setText(" MainActivity ");
         binding.btnTransfer.setOnClickListener(this);
-        RunOnce.FirstInstall.init("First", new FirstTimeListener() {
+        RunOnce.FirstInstall.init("First", new RunOnce.FirstTimeListener() {
             @Override
             public void onFirstTime() {
                 toast("Welcome");
@@ -44,6 +45,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
                 toast("✔");
             }
         });
+        activityCounter++;
     }
 
     @SuppressLint("SetTextI18n")
@@ -51,7 +53,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     public void onClick(View v) {
         if (v.getId() == binding.btnTransfer.getId()) {
             binding.text.setText("MainFragment");
-            binding.count.setText("" + ++i);
+            binding.count.setText("" + ++fragmentCounter);
             transfer.startFragment(OpenFragment.builder(
                     binding.redFrame,
                     new MainFragment(),
@@ -68,8 +70,17 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        binding.count.setText("" + --i);
-        if (i == 0)
+        binding.count.setText("" + --fragmentCounter);
+        if (fragmentCounter == 0){
             binding.text.setText("MainActivity");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(activityCounter--==1){
+            App.forceStop();
+        }
     }
 }

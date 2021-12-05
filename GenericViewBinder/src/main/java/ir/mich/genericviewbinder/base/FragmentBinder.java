@@ -15,7 +15,6 @@ import androidx.viewbinding.ViewBinding;
 
 import ir.mich.genericviewbinder.tools.Secretary;
 import ir.mich.genericviewbinder.tools.Transfer;
-import ir.mich.genericviewbinder.tools.models.FragmentDeepChangedListener;
 
 public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
     /**
@@ -74,4 +73,8 @@ public abstract class FragmentBinder<VB extends ViewBinding> extends Fragment {
             fragmentDeepChangedListener.onDeepChangedListener(activity_require.getSupportFragmentManager().getBackStackEntryCount() - 1);
         });
     }
+    public interface FragmentDeepChangedListener {
+        void onDeepChangedListener(int deep);
+    }
+
 }

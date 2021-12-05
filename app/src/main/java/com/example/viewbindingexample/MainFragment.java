@@ -8,7 +8,6 @@ import com.example.viewbindingexample.databinding.FragmentMainBinding;
 
 import ir.mich.genericviewbinder.base.FragmentBinder;
 import ir.mich.genericviewbinder.tools.RunOnce;
-import ir.mich.genericviewbinder.tools.models.FirstTimeListener;
 
 public class MainFragment extends FragmentBinder<FragmentMainBinding> implements View.OnClickListener {
 
@@ -23,7 +22,7 @@ public class MainFragment extends FragmentBinder<FragmentMainBinding> implements
         binding.exampleText.setText("Color is " + hexColor(color));
         binding.btnTransfer.setOnClickListener(this);
         binding.root.setBackgroundColor(color);
-        RunOnce.FirstRun.init(this, "123", new FirstTimeListener() {
+        RunOnce.FirstRun.init(this, "123", new RunOnce.FirstTimeListener() {
             @Override
             public void onFirstTime() {
                 setFragmentDeepChangedListener(deep -> toast("deep : " + deep));
