@@ -9,11 +9,11 @@ public class Colors {
     public static final int DkGray = 0xFF444444;
     public static final int Gray = 0xFF888888;
     public static final int LtGray = 0xFFCCCCCC;
-    public static final int white = 0xFFFFFFFF;
-    public static final int RED = 0xFFFF0000;
-    public static final int GREEN = 0xFF00FF00;
-    public static final int BLUE = 0xFF0000FF;
-    public static final int YELLOW = 0xFFFFFF00;
+    public static final int White = 0xFFFFFFFF;
+    public static final int Red = 0xFFFF0000;
+    public static final int Green = 0xFF00FF00;
+    public static final int Blue = 0xFF0000FF;
+    public static final int Yellow = 0xFFFFFF00;
     public static final int CYAN = 0xFF00FFFF;
     public static final int MAGENTA = 0xFFFF00FF;
     public static final int TRANSPARENT = 0;
@@ -25,7 +25,6 @@ public class Colors {
     public static final int Beige = 0xfff5f5dc;
     public static final int Bisque = 0xffffe4c4;
     public static final int BlanchedAlmond = 0xffffebcd;
-    public static final int Blue = 0xff0000ff;
     public static final int BlueViolet = 0xff8a2be2;
     public static final int Brown = 0xffa52a2a;
     public static final int BurlyWood = 0xffdeb887;
@@ -66,7 +65,6 @@ public class Colors {
     public static final int GhostWhite = 0xfff8f8ff;
     public static final int Gold = 0xffffd700;
     public static final int Goldenrod = 0xffdaa520;
-    public static final int Green = 0xff008000;
     public static final int GreenYellow = 0xffadff2f;
     public static final int Honeydew = 0xfff0fff0;
     public static final int HotPink = 0xffff69b4;
@@ -128,7 +126,6 @@ public class Colors {
     public static final int Plum = 0xffdda0dd;
     public static final int PowderBlue = 0xffb0e0e6;
     public static final int Purple = 0xff800080;
-    public static final int Red = 0xffff0000;
     public static final int RosyBrown = 0xffbc8f8f;
     public static final int RoyalBlue = 0xff4169e1;
     public static final int SaddleBrown = 0xff8b4513;
@@ -151,9 +148,7 @@ public class Colors {
     public static final int Turquoise = 0xff40e0d0;
     public static final int Violet = 0xffee82ee;
     public static final int Wheat = 0xfff5deb3;
-    public static final int White = 0xffffffff;
     public static final int WhiteSmoke = 0xfff5f5f5;
-    public static final int Yellow = 0xffffff00;
     public static final int YellowGreen = 0xff9acd32;
 
     public static int random() {
