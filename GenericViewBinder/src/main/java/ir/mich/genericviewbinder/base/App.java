@@ -7,7 +7,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.Toast;
+
+import androidx.preference.PreferenceManager;
+
+import ir.mich.genericviewbinder.tools.Access;
 
 /**
  * Do this:
@@ -53,6 +58,18 @@ public class App extends Application {
 
     public static void toast_long(CharSequence text) {
         Toast.makeText(getContext(), text, LENGTH_LONG).show();
+    }
+
+    public static SharedPreferences getDefaultSharedPreferences() {
+        return PreferenceManager.getDefaultSharedPreferences(App.getContext());
+    }
+
+    public static SharedPreferences getSharedPreferences(String name) {
+        return getAppContext().getSharedPreferences(name, Context.MODE_PRIVATE);
+    }
+
+    public static SharedPreferences getSharedPreferencesBase(String name, int mode) {
+        return getAppContext().getSharedPreferences(name, mode);
     }
 
     @Override

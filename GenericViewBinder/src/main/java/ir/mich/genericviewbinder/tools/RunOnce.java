@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+import ir.mich.genericviewbinder.base.App;
+
 public class RunOnce {
 
     private static final String KEY = "kQkn2cLUopXw6uKKuUE8";
@@ -65,9 +67,9 @@ public class RunOnce {
 
     public static class FirstInstall {
         public static void init(String key_SharedPreferences, FirstTimeListener reviewer) {
-            if (!KeyStore.getSharedPreferences(KEY).getBoolean(key_SharedPreferences, false)) {
+            if (!App.getSharedPreferences(KEY).getBoolean(key_SharedPreferences, false)) {
                 reviewer.onFirstTime();
-                SharedPreferences.Editor editor = KeyStore.getSharedPreferences(KEY).edit();
+                SharedPreferences.Editor editor = App.getSharedPreferences(KEY).edit();
                 editor.putBoolean(key_SharedPreferences, true);
                 editor.apply();
             } else {
@@ -76,11 +78,11 @@ public class RunOnce {
         }
 
         public void remove(String key) {
-            KeyStore.getSharedPreferences(KEY).edit().remove(KEY).apply();
+            App.getSharedPreferences(KEY).edit().remove(KEY).apply();
         }
 
         public void clear() {
-            KeyStore.getSharedPreferences(KEY).edit().clear().apply();
+            App.getSharedPreferences(KEY).edit().clear().apply();
         }
     }
 
