@@ -54,13 +54,23 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
                         (permission, isGranted) -> {
                             switch (permission) {
                                 case Manifest.permission.ACCESS_FINE_LOCATION:
-                                    toast("is granted:" + isGranted);
+                                    App.snackbar_indefinite(
+                                            "ACCESS_LOCATION : " + isGranted,
+                                            "OK",
+                                            view -> {
+                                            });
+                                    break;
+                                case Manifest.permission.CAMERA:
+                                    toast("ACCESS_CAMERA: " + isGranted);
                                     break;
                             }
                         }
                 ));
         PermissionManager.handler(123).launch(
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION}
+                new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.CAMERA
+                }
         );
     }
 
