@@ -1,7 +1,11 @@
 package com.example.viewbindingexample;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.viewbindingexample.databinding.ActivityMainBinding;
 
@@ -17,6 +21,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     private static int activityCounter;
     private int fragmentCounter;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate() {
@@ -27,15 +32,35 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
         RunOnce.FirstInstall.init("First", new RunOnce.FirstTimeListener() {
             @Override
             public void onFirstTime() {
-                toast("Welcome");
+                toast("onFirstTime ✔");
             }
 
             @Override
             public void onNotFirstTime() {
-                toast("✔");
+                toast("onNotFirstTime ✔");
             }
         });
         activityCounter++;
+        ///////////////////////////
+        requestPermission();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void requestPermission() {
+        App.PermissionManager.builder(
+                123,
+                result -> result.forEach(
+                        (permission, isGranted) -> {
+                            switch (permission) {
+                                case Manifest.permission.ACCESS_FINE_LOCATION:
+                                    toast("is granted:" + isGranted);
+                                    break;
+                            }
+                        }
+                ));
+        App.PermissionManager.handler(123).launch(
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION}
+        );
     }
 
     @SuppressLint("SetTextI18n")
@@ -73,4 +98,5 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
             App.forceStop();
         }
     }
+
 }

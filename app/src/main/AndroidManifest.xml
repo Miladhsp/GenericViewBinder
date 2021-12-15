@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.viewbindingexample" >
-
+    <uses-permission android:name="ANDROID.PERMISSION.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:name="ir.mich.genericviewbinder.base.App"
         android:allowBackup="true"
@@ -9,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ViewBindingExample">
+        android:theme="@style/Theme.ViewBindingExample"
+        tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
             android:exported="true" >

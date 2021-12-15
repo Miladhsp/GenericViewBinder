@@ -15,9 +15,9 @@ public class ActivityResultBinder<Input, Result> {
     @Nullable
     private OnActivityResult<Result> onActivityResult;
 
-    private ActivityResultBinder(@NonNull ActivityResultCaller caller,
-                                 @NonNull ActivityResultContract<Input, Result> contract,
-                                 @Nullable OnActivityResult<Result> onActivityResult) {
+    ActivityResultBinder(@NonNull ActivityResultCaller caller,
+                         @NonNull ActivityResultContract<Input, Result> contract,
+                         @Nullable OnActivityResult<Result> onActivityResult) {
         this.onActivityResult = onActivityResult;
         this.launcher = caller.registerForActivityResult(contract, this::callOnActivityResult);
     }
@@ -41,7 +41,8 @@ public class ActivityResultBinder<Input, Result> {
     @NonNull
     public static <Input, Result> ActivityResultBinder<Input, Result> registerForActivityResult(
             @NonNull ActivityResultCaller caller,
-            @NonNull ActivityResultContract<Input, Result> contract) {
+            @NonNull ActivityResultContract<Input, Result> contract
+    ) {
         return registerForActivityResult(caller, contract, null);
     }
 
