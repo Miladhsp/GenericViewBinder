@@ -122,25 +122,4 @@ public class App extends Application {
         application = this;
     }
 
-    public static class PermissionManager {
-
-        private static Map<Integer, ActivityResultLauncher<String[]>> requestCodes = new HashMap<>();
-
-        public static ActivityResultLauncher<String[]> handler(int requestCode) {
-            return requestCodes.get(requestCode);
-        }
-
-        public static void builder(
-                int requestCode,
-                @NonNull ActivityResultCallback<Map<String, Boolean>> booleanActivityResultCallback
-        ) {
-            requestCodes.put(
-                    requestCode,
-                    ((ComponentActivity) (App.getActivity())).registerForActivityResult(
-                            new ActivityResultContracts.RequestMultiplePermissions()
-                            , booleanActivityResultCallback)
-            );
-        }
-
-    }
 }

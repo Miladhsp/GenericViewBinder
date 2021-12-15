@@ -12,6 +12,7 @@ import com.example.viewbindingexample.databinding.ActivityMainBinding;
 import ir.mich.genericviewbinder.base.ActivityBinder;
 import ir.mich.genericviewbinder.base.App;
 import ir.mich.genericviewbinder.tools.Colors;
+import ir.mich.genericviewbinder.tools.PermissionManager;
 import ir.mich.genericviewbinder.tools.RunOnce;
 import ir.mich.genericviewbinder.tools.models.OpenFragment;
 
@@ -47,7 +48,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void requestPermission() {
-        App.PermissionManager.builder(
+        PermissionManager.builder(
                 123,
                 result -> result.forEach(
                         (permission, isGranted) -> {
@@ -58,7 +59,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
                             }
                         }
                 ));
-        App.PermissionManager.handler(123).launch(
+        PermissionManager.handler(123).launch(
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION}
         );
     }

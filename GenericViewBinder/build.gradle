@@ -38,8 +38,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 32
 
-        versionCode 48
-        versionName "2.4.8"
+        versionCode 49
+        versionName "2.4.9"
     }
 }
 
@@ -56,7 +56,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.Miladhsp'
                 artifactId = 'GenericViewBinder'
-                version = '2.4.8'
+                version = '2.4.9'
             }
         }
     }
