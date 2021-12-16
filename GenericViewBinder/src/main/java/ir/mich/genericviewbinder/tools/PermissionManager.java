@@ -15,19 +15,21 @@ public class PermissionManager {
 
     private static Map<Integer, ActivityResultLauncher<String[]>> requestCodes = new HashMap<>();
 
-    public static ActivityResultLauncher<String[]> handler(int requestCode) {
+    public static ActivityResultLauncher<String[]> launcher(int requestCode) {
         return requestCodes.get(requestCode);
     }
 
-    public static void builder(
+    public static void handler(
             int requestCode,
             @NonNull ActivityResultCallback<Map<String, Boolean>> booleanActivityResultCallback
     ) {
         requestCodes.put(
                 requestCode,
-                ((ComponentActivity) (App.getActivity())).registerForActivityResult(
-                        new ActivityResultContracts.RequestMultiplePermissions()
-                        , booleanActivityResultCallback)
+                ((ComponentActivity) (App.getActivity()))
+                        .registerForActivityResult(
+                                new ActivityResultContracts.RequestMultiplePermissions()
+                                , booleanActivityResultCallback
+                        )
         );
     }
 

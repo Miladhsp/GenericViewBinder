@@ -14,6 +14,7 @@ import ir.mich.genericviewbinder.base.App;
 import ir.mich.genericviewbinder.tools.Colors;
 import ir.mich.genericviewbinder.tools.PermissionManager;
 import ir.mich.genericviewbinder.tools.RunOnce;
+import ir.mich.genericviewbinder.tools.Tools;
 import ir.mich.genericviewbinder.tools.models.OpenFragment;
 
 
@@ -46,11 +47,11 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
         requestPermission();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void requestPermission() {
-        PermissionManager.builder(
+        PermissionManager.handler(
                 123,
-                result -> result.forEach(
+                result -> Tools.forEach(
+                        result,
                         (permission, isGranted) -> {
                             switch (permission) {
                                 case Manifest.permission.ACCESS_FINE_LOCATION:
@@ -65,12 +66,13 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
                                     break;
                             }
                         }
-                ));
-        PermissionManager.handler(123).launch(
-                new String[]{
+                )
+        );
+        PermissionManager.launcher(123).launch(
+                Tools.arrayCreator(
                         Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.CAMERA
-                }
+                )
         );
     }
 

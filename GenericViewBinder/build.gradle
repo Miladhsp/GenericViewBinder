@@ -28,16 +28,16 @@ android {
         }
     }
 
-    compileSdk 31
+    compileSdk 32
 
     defaultConfig {
         minSdk 16
-        targetSdk 31
+        targetSdk 32
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        versionCode 50
-        versionName "2.5.0"
+        versionCode 51
+        versionName "2.5.1"
     }
 }
 
@@ -54,7 +54,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.Miladhsp'
                 artifactId = 'GenericViewBinder'
-                version = '2.5.0'
+                version = '2.5.1'
             }
         }
     }
