@@ -36,15 +36,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        versionCode 52
-        versionName "2.5.2"
+        versionCode 53
+        versionName "2.5.3"
     }
-}
-
-dependencies {
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation "androidx.preference:preference:1.1.1"
 }
 
 afterEvaluate {
@@ -54,8 +48,14 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.Miladhsp'
                 artifactId = 'GenericViewBinder'
-                version = '2.5.2'
+                version = '2.5.3'
             }
         }
     }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation "androidx.preference:preference:1.1.1"
 }

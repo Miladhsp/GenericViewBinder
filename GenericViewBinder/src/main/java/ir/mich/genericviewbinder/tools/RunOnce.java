@@ -33,10 +33,10 @@ public class RunOnce {
                     reviewer.onFirstTime();
                 }
             } else {
+                reviewer.onFirstTime();
                 ArrayList<String> list = new ArrayList<>();
                 list.add(key);
                 map.put(clazz, list);
-                reviewer.onFirstTime();
             }
         }
 

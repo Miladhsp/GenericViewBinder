@@ -1,7 +1,7 @@
 package ir.mich.genericviewbinder.tools;
 
 public class Functions {
-    public static class Generic<O> {
+    public static class Value<O> {
 
         public interface _0<O> {
             O apply();

@@ -30,11 +30,11 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
 //        android:id="@+id/text"
 //        findViewById(R.id.text);
         binding.text.setText(" MainActivity ");
+
         binding.btnTransfer.setOnClickListener(this);
         RunOnce.FirstInstall.init("First", new RunOnce.FirstTimeListener() {
             @Override
             public void onFirstTime() {
-                requestPermission();
                 toast("onFirstTime ✔");
             }
 
@@ -44,35 +44,47 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
             }
         });
         activityCounter++;
+        /////////////////////////
+        requestPermission();
     }
 
     private void requestPermission() {
-        PermissionManager.handler(
-                123,
-                result -> Tools.forEach(
-                        result,
-                        (permission, isGranted) -> {
-                            switch (permission) {
-                                case Manifest.permission.ACCESS_FINE_LOCATION:
-                                    App.snackbar_indefinite(
-                                            "ACCESS_LOCATION : " + isGranted,
-                                            "OK",
-                                            view -> {
-                                            });
-                                    break;
-                                case Manifest.permission.CAMERA:
-                                    toast("ACCESS_CAMERA: " + isGranted);
-                                    break;
-                            }
-                        }
-                )
-        );
-        PermissionManager.launcher(123).launch(
-                Tools.arrayCreator(
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.CAMERA
-                )
-        );
+        RunOnce.FirstRun.init(this, "permission", new RunOnce.FirstTimeListener() {
+            @Override
+            public void onFirstTime() {
+                PermissionManager.handler(
+                        123,
+                        result -> Tools.forEach(
+                                result,
+                                (permission, isGranted) -> {
+                                    switch (permission) {
+                                        case Manifest.permission.ACCESS_FINE_LOCATION:
+                                            App.toast("ACCESS_LOCATION : " + isGranted);
+                                            break;
+                                        case Manifest.permission.CAMERA:
+                                            toast("ACCESS_CAMERA: " + isGranted);
+                                            break;
+                                    }
+                                }
+                        )
+                );
+                lunch();
+            }
+
+            @Override
+            public void onNotFirstTime() {
+                lunch();
+            }
+
+            private void lunch() {
+                PermissionManager.launcher(123).launch(
+                        Tools.arrayCreator(
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.CAMERA
+                        )
+                );
+            }
+        });
     }
 
     @SuppressLint("SetTextI18n")
