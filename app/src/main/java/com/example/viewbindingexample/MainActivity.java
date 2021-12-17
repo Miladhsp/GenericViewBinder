@@ -34,6 +34,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
         RunOnce.FirstInstall.init("First", new RunOnce.FirstTimeListener() {
             @Override
             public void onFirstTime() {
+                requestPermission();
                 toast("onFirstTime ✔");
             }
 
@@ -43,8 +44,6 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
             }
         });
         activityCounter++;
-        ///////////////////////////
-        requestPermission();
     }
 
     private void requestPermission() {

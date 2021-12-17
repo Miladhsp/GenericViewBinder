@@ -1,5 +1,6 @@
 package ir.mich.genericviewbinder.tools;
 
+import java.util.Collection;
 import java.util.Map;
 
 public class Tools {
@@ -10,10 +11,19 @@ public class Tools {
 
     public static <K, V> void forEach(
             Map<K, V> map,
-            Functions._2<K, V> action
+            Functions.Void._2<K, V> action
     ) {
         for (Map.Entry<K, V> entry : map.entrySet()) {
             action.apply(entry.getKey(), entry.getValue());
+        }
+    }
+
+    public static <E> void forEach(
+            Collection<E> collection,
+            Functions.Void._1<E> action
+    ) {
+        for (E e : collection) {
+            action.apply(e);
         }
     }
 
