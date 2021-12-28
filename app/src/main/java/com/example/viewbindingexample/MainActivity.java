@@ -26,7 +26,6 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
 //        android:id="@+id/text"
 //        findViewById(R.id.text);
         binding.text.setText(" MainActivity ");
-
         binding.btnTransfer.setOnClickListener(this);
         RunOnce.FirstInstall.init("First", new RunOnce.FirstTimeListener() {
             @Override
@@ -40,7 +39,6 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
             }
         });
         activityCounter++;
-        /////////////////////////
         requestPermission();
     }
 
