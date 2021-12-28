@@ -13,10 +13,22 @@ import ir.mich.genericviewbinder.base.App;
 
 public class PermissionManager {
 
+
     private static final Map<Integer, ActivityResultLauncher<String[]>> requestCodes = new HashMap<>();
+    private static ActivityResultLauncher<String[]> ACTIVITY_RESULT_LAUNCHER;
+
+    public static ActivityResultLauncher<String[]> launcher() {
+        return ACTIVITY_RESULT_LAUNCHER;
+    }
 
     public static ActivityResultLauncher<String[]> launcher(int requestCode) {
         return requestCodes.get(requestCode);
+    }
+
+    public static void handler(
+            Functions.Void._2<String, Boolean> action
+    ) {
+        handler(result -> Tools.forEach(result, action));
     }
 
     public static void handler(
@@ -24,6 +36,17 @@ public class PermissionManager {
             Functions.Void._2<String, Boolean> action
     ) {
         handler(requestCode, result -> Tools.forEach(result, action));
+    }
+
+    public static void handler(
+            @NonNull ActivityResultCallback<Map<String, Boolean>> booleanActivityResultCallback
+    ) {
+        ACTIVITY_RESULT_LAUNCHER =
+                ((ComponentActivity) (App.getActivity()))
+                        .registerForActivityResult(
+                                new ActivityResultContracts.RequestMultiplePermissions()
+                                , booleanActivityResultCallback
+                        );
     }
 
     public static void handler(

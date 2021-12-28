@@ -47,7 +47,6 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
             @Override
             public void onFirstTime() {
                 PermissionManager.handler(
-                        123,
                         (permission, isGranted) -> {
                             switch (permission) {
                                 case Manifest.permission.ACCESS_FINE_LOCATION:
@@ -68,7 +67,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
             }
 
             private void lunch() {
-                PermissionManager.launcher(123).launch(
+                PermissionManager.launcher().launch(
                         Tools.arrayCreator(
                                 Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.CAMERA
