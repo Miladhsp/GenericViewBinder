@@ -1,5 +1,7 @@
 package com.example.viewbindingexample;
 
+import static ir.mich.genericviewbinder.tools.Tools.array;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.view.View;
@@ -11,7 +13,6 @@ import ir.mich.genericviewbinder.base.App;
 import ir.mich.genericviewbinder.tools.Colors;
 import ir.mich.genericviewbinder.tools.PermissionManager;
 import ir.mich.genericviewbinder.tools.RunOnce;
-import ir.mich.genericviewbinder.tools.Tools;
 import ir.mich.genericviewbinder.tools.models.OpenFragment;
 
 
@@ -68,7 +69,7 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
 
             private void lunch() {
                 PermissionManager.launcher().launch(
-                        Tools.arrayCreator(
+                        array(
                                 Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.CAMERA
                         )

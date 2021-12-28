@@ -1,5 +1,7 @@
 package ir.mich.genericviewbinder.tools;
 
+import static ir.mich.genericviewbinder.tools.Tools.*;
+
 import androidx.activity.ComponentActivity;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -28,14 +30,14 @@ public class PermissionManager {
     public static void handler(
             Functions.Void._2<String, Boolean> action
     ) {
-        handler(result -> Tools.forEach(result, action));
+        handler(result -> forEach(result, action));
     }
 
     public static void handler(
             int requestCode,
             Functions.Void._2<String, Boolean> action
     ) {
-        handler(requestCode, result -> Tools.forEach(result, action));
+        handler(requestCode, result -> forEach(result, action));
     }
 
     public static void handler(

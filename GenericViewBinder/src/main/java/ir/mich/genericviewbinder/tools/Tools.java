@@ -1,12 +1,19 @@
 package ir.mich.genericviewbinder.tools;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class Tools {
     @SafeVarargs
-    public static <I> I[] arrayCreator(I... args) {
+    public static <I> I[] array(I... args) {
         return args;
+    }
+
+    @SafeVarargs
+    public static <I> List<I> list(I... args) {
+        return Arrays.asList(args);
     }
 
     public static <K, V> void forEach(
