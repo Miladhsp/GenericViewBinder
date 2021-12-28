@@ -13,10 +13,17 @@ import ir.mich.genericviewbinder.base.App;
 
 public class PermissionManager {
 
-    private static Map<Integer, ActivityResultLauncher<String[]>> requestCodes = new HashMap<>();
+    private static final Map<Integer, ActivityResultLauncher<String[]>> requestCodes = new HashMap<>();
 
     public static ActivityResultLauncher<String[]> launcher(int requestCode) {
         return requestCodes.get(requestCode);
+    }
+
+    public static void handler(
+            int requestCode,
+            Functions.Void._2<String, Boolean> action
+    ) {
+        handler(requestCode, result -> Tools.forEach(result, action));
     }
 
     public static void handler(

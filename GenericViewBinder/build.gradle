@@ -36,8 +36,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        versionCode 53
-        versionName "2.5.3"
+        versionCode 54
+        versionName "2.5.4"
     }
 }
 
@@ -48,7 +48,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.Miladhsp'
                 artifactId = 'GenericViewBinder'
-                version = '2.5.3'
+                version = '2.5.4'
             }
         }
     }

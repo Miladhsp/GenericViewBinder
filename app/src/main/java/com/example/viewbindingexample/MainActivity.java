@@ -2,10 +2,7 @@ package com.example.viewbindingexample;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.view.View;
-
-import androidx.annotation.RequiresApi;
 
 import com.example.viewbindingexample.databinding.ActivityMainBinding;
 
@@ -23,7 +20,6 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
     private static int activityCounter;
     private int fragmentCounter;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate() {
@@ -54,19 +50,16 @@ public class MainActivity extends ActivityBinder<ActivityMainBinding> implements
             public void onFirstTime() {
                 PermissionManager.handler(
                         123,
-                        result -> Tools.forEach(
-                                result,
-                                (permission, isGranted) -> {
-                                    switch (permission) {
-                                        case Manifest.permission.ACCESS_FINE_LOCATION:
-                                            App.toast("ACCESS_LOCATION : " + isGranted);
-                                            break;
-                                        case Manifest.permission.CAMERA:
-                                            toast("ACCESS_CAMERA: " + isGranted);
-                                            break;
-                                    }
-                                }
-                        )
+                        (permission, isGranted) -> {
+                            switch (permission) {
+                                case Manifest.permission.ACCESS_FINE_LOCATION:
+                                    App.toast("ACCESS_LOCATION : " + isGranted);
+                                    break;
+                                case Manifest.permission.CAMERA:
+                                    toast("ACCESS_CAMERA: " + isGranted);
+                                    break;
+                            }
+                        }
                 );
                 lunch();
             }
